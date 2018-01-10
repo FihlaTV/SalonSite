@@ -1,3 +1,4 @@
+<br>
 <div class="container">
     <div class="card">
         <!-- Default card contents -->
@@ -66,7 +67,7 @@
                             {{!-- delete --}}
                             <td>
                                 <form action="/admin/staff/{{this.id}}?_method=DELETE" method="POST">
-                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                    <button type="submit" class="btn btn-danger btn-sm button-delete">Delete</button>
                                 </form>
                             </td>
                         </tr>
@@ -119,7 +120,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Email</label>
-                                <input type="text" class="form-control" name="email" placeholder="REQUIRED" required>
+                                <input type="email" class="form-control" name="email" placeholder="REQUIRED" required>
                             </div>
                         </div>
                         <div class="col">
@@ -195,7 +196,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Zip</label>
-                                <input type="text" class="form-control" name="zip" placeholder="zip">
+                                <input type="text" class="form-control" name="zip" placeholder="zip" required>
                             </div>
                             <div class="form-group">
                                 <label for="">Emergency Contact Name</label>
@@ -230,8 +231,36 @@
     <!-- second card -->
 </div>
 <script type="text/javascript">
-    $(document).ready(function() {
+    $(document).ready(function () {
         $("#admin-ul").show();
         $("#public-ul").hide();
+
+        $(".button-delete").on("click", function (e) {
+            e.preventDefault();
+
+            swal({
+                title: "Are you sure?",
+                text: "You will not be able to recover this person!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes, delete it!",
+                closeOnConfirm: false
+            },
+                function (isConfirm) {
+                    if (isConfirm) {
+                        swal("Deleted!", "Your staff has been deleted.", "success");
+                        console.log("Frm: ", e.currentTarget.form);
+                        e.currentTarget.form.submit();
+                        return true;
+                    } else {
+                        swal("Cancelled", "Your imaginary file is safe :)", "error");
+                        return false;
+                    }
+                });
+        });
     });
+
+    function deleteProduct() {
+    }
 </script>

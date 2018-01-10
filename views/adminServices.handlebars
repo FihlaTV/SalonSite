@@ -50,13 +50,13 @@
                             {{!-- update --}}
                             <td>
                                 <form action="/admin/services/{{this.id}}/edit" method="GET">
-                                    <button type="submit" class="btn btn-info btn-sm"><i class="fa fa-info-circle" aria-hidden="true"> / Edit</i></button>
+                                    <button type="submit" class="btn btn-info btn-sm">Edit</i></button>
                                 </form>
                             </td>
                             {{!-- delete --}}
                             <td>
                                 <form action="/admin/services/{{this.id}}?_method=DELETE" method="POST">
-                                    <button type="submit" class="btn btn-danger btn-sm deleteBtn">Delete</button>
+                                    <button type="submit" class="btn btn-danger btn-sm button-delete deleteBtn">Delete</button>
                                 </form>
                             </td>
                         </tr>
@@ -123,8 +123,36 @@
     <!-- second card -->
 </div>
 <script type="text/javascript">
-    $(document).ready(function() {
+    $(document).ready(function () {
         $("#admin-ul").show();
         $("#public-ul").hide();
+
+        $(".button-delete").on("click", function (e) {
+            e.preventDefault();
+
+            swal({
+                title: "Are you sure?",
+                text: "You will not be able to recover this service!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes, delete it!",
+                closeOnConfirm: false
+            },
+                function (isConfirm) {
+                    if (isConfirm) {
+                        swal("Deleted!", "Your service has been deleted.", "success");
+                        console.log("Frm: ", e.currentTarget.form);
+                        e.currentTarget.form.submit();
+                        return true;
+                    } else {
+                        swal("Cancelled", "Your imaginary file is safe :)", "error");
+                        return false;
+                    }
+                });
+        });
     });
+
+    function deleteProduct() {
+    }
 </script>

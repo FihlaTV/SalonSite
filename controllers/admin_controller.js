@@ -467,7 +467,9 @@ router.get("/staffservice", (req, res) => {
             }
             // console.log(data.aStaff[0].dataValues.name)
             // console.log(data.aServices[0].dataValues.name)
-            // console.log(data.aStaff)
+            console.log(data.aStaff)
+            console.log("::::::::::::::::")
+            console.log(data.aServices)
         });
         res.render("adminStaffService", { data: data })
     });
