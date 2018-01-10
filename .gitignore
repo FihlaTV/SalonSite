@@ -13,4 +13,7 @@ config.json
 # .DS_Store
 .DS_Store
 
+# Database pictures
+databasePic
+
 
