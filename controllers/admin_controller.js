@@ -483,7 +483,7 @@ router.get("/membership", (req, res) => {
         order: [["title", "ASC"]]
     }).then(data => {
         // console.log(data)
-        res.render("adminMembership", { Membership: data });
+        res.render("adminMembership", { membership: data });
     });
 });
 //add membership in database
