@@ -2,10 +2,11 @@ var express = require("express");
 var router = express.Router();
 var db = require("../models");
 const SALON_NAME = "Blvd6 Salon";
-// show all product
+
 router.get("/", (req, res) => {
     res.render("adminIndex");
 });
+// show all product
 router.get("/products", (req, res) => {
     db.Product.findAll({
         order: [["brand", "ASC"]]
@@ -472,6 +473,65 @@ router.get("/staffservice", (req, res) => {
             console.log(data.aServices)
         });
         res.render("adminStaffService", { data: data })
+    });
+});
+
+//// show all membership
+router.get("/membership", (req, res) => {
+    console.log(req.body)
+    db.Membership.findAll({
+        order: [["title", "ASC"]]
+    }).then(data => {
+        // console.log(data)
+        res.render("adminMembership", { Membership: data });
+    });
+});
+//add membership in database
+router.post("/membership/new", (req, res) => {
+    console.log('before', req.body.description)
+    var description = "<pre>" + req.body.description + "</pre>"
+    console.log('after', req.body.description)
+    db.Membership.create(
+        {
+            title: req.body.title,
+            price: req.body.price,
+            description: req.body.description
+        }
+    ).then(data => {
+        res.redirect("/admin/membership")
+    });
+});
+//edit membership - show update membership
+router.get("/membership/:id/edit", (req, res) => {
+    console.log(req.params.id)
+    db.Membership.findOne({
+        where: {
+            id: req.params.id
+        }
+    }).then(data => {
+        res.render("adminMembershipEdit", { editMembership: data })
+    });
+});
+//update - update database
+router.put("/membership/:id", (req, res) => {
+    db.Membership.update(req.body, {
+        where: {
+            id: req.params.id
+        }
+    }).then(data => {
+        res.redirect("/admin/membership")
+    }
+        )
+})
+//delete membership in database
+router.delete("/membership/:id", (req, res) => {
+    // console.log(req.params.id);
+    db.Membership.destroy({
+        where: {
+            id: req.params.id
+        }
+    }).then(data => {
+        res.redirect("/admin/membership")
     });
 });
 
