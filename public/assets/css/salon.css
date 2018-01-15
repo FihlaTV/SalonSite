@@ -188,3 +188,6 @@ ul .admin-ul {
 #appoinment-span {
     width: 300px;
 }
+.noUnderline {
+    text-decoration: none !important;
+}

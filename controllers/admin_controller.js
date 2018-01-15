@@ -488,9 +488,9 @@ router.get("/membership", (req, res) => {
 });
 //add membership in database
 router.post("/membership/new", (req, res) => {
-    console.log('before', req.body.description)
-    var description = "<pre>" + req.body.description + "</pre>"
-    console.log('after', req.body.description)
+    // console.log('before', req.body.description)
+    // var description = "<pre>" + req.body.description + "</pre>"
+    // console.log('after', req.body.description)
     db.Membership.create(
         {
             title: req.body.title,
