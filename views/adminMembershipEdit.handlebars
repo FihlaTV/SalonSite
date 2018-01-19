@@ -14,11 +14,15 @@
                                 <label for="">Title</label>
                                 <input type="text" class="form-control" name="title" placeholder="title" value="{{editMembership.title}}">
                             </div>
+                        </div>
+                        <div class="col">
                             <div class="form-group">
                                 <label for="">Price</label>
                                 <input type="text" class="form-control" name="price" placeholder="x.xx" value="{{editMembership.price}}">
                             </div>
                         </div>
+                    </div>
+                    <div class="row">
                         <div class="col">
                             <div class="form-group">
                                 <label for="">Description</label>
@@ -26,16 +30,17 @@
                             </div>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary">Update Promotion</button>
-                    <a href="/admin/membership">
-                        <button type="button" class="btn btn-info">Cancel</button>
-                    </a>
-                </div>{{!-- container --}}
-            </form>
-        </div>
-        <!-- card-block -->
+                </div>
+                <button type="submit" class="btn btn-primary">Update Promotion</button>
+                <a href="/admin/membership">
+                    <button type="button" class="btn btn-info">Cancel</button>
+                </a>
+        </div>{{!-- container --}}
+        </form>
     </div>
-    <!-- second card -->
+    <!-- card-block -->
+</div>
+<!-- second card -->
 </div>{{!-- container --}}
 <script type="text/javascript">
     $(document).ready(function () {

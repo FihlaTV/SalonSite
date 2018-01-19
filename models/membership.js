@@ -3,14 +3,10 @@ module.exports = function (sequelize, DataTypes) {
         title: {
             type: DataTypes.STRING,
             allowNULL: false,
-
         },
         price: {
-            type: DataTypes.DECIMAL(10, 2),
+            type: DataTypes.STRING,
             allowNULL: false,
-            validate: {
-                isDecimal: true
-            }
         },
         description: {
             type: DataTypes.TEXT,
