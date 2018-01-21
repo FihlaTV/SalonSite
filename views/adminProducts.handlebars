@@ -38,7 +38,7 @@
                 
                             <div class="modal fade bd-example-modal-sm{{@index}}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-sm">
-                                    <div class="modal-content">
+                                    <div class="modal-content container">
                                         <p><strong>Brand:</strong> {{this.brand}}</p>
                                         <p><strong>Name:</strong> {{this.name}}</p>
                                         <p><strong>Description:</strong> {{this.description}}</p>
@@ -103,7 +103,7 @@
                         <div class="col">
                             <div class="form-group">
                                 <label for="">Stock Quantity</label>
-                                <input type="text" class="form-control" name="stock_quantity" placeholder="stock_quantity" required>
+                                <input type="text" class="form-control" name="stock_quantity" placeholder="xx" required>
 
                             </div>
                             <div class="form-group">
@@ -130,6 +130,9 @@
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary">Add Product</button>
+                    <a href="/admin/products">
+                        <button type="button" class="btn btn-info">Cancel</button>
+                    </a>
                 </div>{{!-- container --}}
             </form>
         </div>

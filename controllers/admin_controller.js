@@ -2,10 +2,12 @@ var express = require("express");
 var router = express.Router();
 var db = require("../models");
 const SALON_NAME = "Blvd6 Salon";
-// show all product
+
 router.get("/", (req, res) => {
     res.render("adminIndex");
 });
+
+// show all product
 router.get("/products", (req, res) => {
     db.Product.findAll({
         order: [["brand", "ASC"]]
@@ -13,6 +15,7 @@ router.get("/products", (req, res) => {
         res.render("adminProducts", { products: data });
     });
 });
+
 //add product in database
 router.post("/products/new", (req, res) => {
     // console.log(req.body)
@@ -32,6 +35,7 @@ router.post("/products/new", (req, res) => {
         res.redirect("/admin/products")
     });
 });
+
 //edit product - show update product
 router.get("/products/:id/edit", (req, res) => {
     //console.log(req.params.id)
@@ -43,6 +47,7 @@ router.get("/products/:id/edit", (req, res) => {
         res.render("adminProductsEdit", { editproduct: data })
     });
 });
+
 //update - update database
 router.put("/products/:id", (req, res) => {
     db.Product.update(req.body, {
@@ -53,7 +58,8 @@ router.put("/products/:id", (req, res) => {
         res.redirect("/admin/products")
     }
         )
-})
+});
+
 //delete product in database
 router.delete("/products/:id", (req, res) => {
     // console.log(req.params.id);
@@ -75,6 +81,7 @@ router.get("/services", (req, res) => {
         res.render("adminservices", { services: data });
     });
 });
+
 //add service in database
 router.post("/services/new", (req, res) => {
     // console.log(req.body)
@@ -93,6 +100,7 @@ router.post("/services/new", (req, res) => {
         res.redirect("/admin/services")
     });
 });
+
 //edit service - show update service
 router.get("/services/:id/edit", (req, res) => {
     //console.log(req.params.id)
@@ -105,6 +113,7 @@ router.get("/services/:id/edit", (req, res) => {
         res.render("adminServicesEdit", { editservice: data })
     });
 });
+
 //update - update database
 router.put("/services/:id", (req, res) => {
     db.Service.update(req.body, {
@@ -115,7 +124,8 @@ router.put("/services/:id", (req, res) => {
         //console.log(data);
         res.redirect("/admin/services")
     })
-})
+});
+
 //delete service in database
 router.delete("/services/:id", (req, res) => {
     // console.log(req.params.id);
@@ -144,6 +154,7 @@ router.get("/salon/edit", (req, res) => {
         res.render("adminSalonEdit", { editSalon: data })
     });
 });
+
 //update - update database
 router.put("/salon/update", (req, res) => {
     db.Email.update({
@@ -196,6 +207,7 @@ router.get("/staff", (req, res) => {
         res.render("adminStaff", { staff: data });
     });
 });
+
 //add staff in database
 router.post("/staff/new", (req, res) => {
     var emailId;
@@ -253,6 +265,7 @@ router.post("/staff/new", (req, res) => {
         res.json(error);
     });
 });
+
 //edit staff - show update product
 router.get("/staff/:id/edit", (req, res) => {
     //console.log(req.params.id)
@@ -267,6 +280,7 @@ router.get("/staff/:id/edit", (req, res) => {
         res.render("adminStaffEdit", { editStaff: data })
     });
 });
+
 //update - update database
 router.put("/staff/:id", (req, res) => {
     db.Email.update({
@@ -310,7 +324,8 @@ router.put("/staff/:id", (req, res) => {
                     })).then(data => {
                         res.redirect("/admin/staff");
                     });
-})
+});
+
 //delete staff in database
 router.delete("/staff/:id", (req, res) => {
     // console.log(req.params.id);
@@ -336,6 +351,7 @@ router.get("/customers", (req, res) => {
         res.render("adminCustomers", { customers: data });
     });
 });
+
 //add customer in database
 router.post("/customers/new", (req, res) => {
     var emailId;
@@ -393,6 +409,7 @@ router.post("/customers/new", (req, res) => {
         res.json(error);
     });
 });
+
 //edit customers - show update product
 router.get("/customers/:id/edit", (req, res) => {
     //console.log(req.params.id)
@@ -407,6 +424,7 @@ router.get("/customers/:id/edit", (req, res) => {
         res.render("adminCustomersEdit", { editCustomer: data })
     });
 });
+
 //update - update database
 router.put("/customers/:id", (req, res) => {
     db.Email.update({
@@ -448,7 +466,8 @@ router.put("/customers/:id", (req, res) => {
                     })).then(data => {
                         res.redirect("/admin/customers");
                     });
-})
+});
+
 //delete staff in database
 router.delete("/customers/:id", (req, res) => {
     // console.log(req.params.id);
@@ -473,9 +492,74 @@ router.get("/staffservice", (req, res) => {
             }
             // console.log(data.aStaff[0].dataValues.name)
             // console.log(data.aServices[0].dataValues.name)
-            // console.log(data.aStaff)
+            console.log(data.aStaff)
+            console.log("::::::::::::::::")
+            console.log(data.aServices)
         });
         res.render("adminStaffService", { data: data })
+    });
+});
+
+//// show all membership
+router.get("/membership", (req, res) => {
+    console.log(req.body)
+    db.Membership.findAll({
+        order: [["title", "ASC"]]
+    }).then(data => {
+        // console.log(data)
+        res.render("adminMembership", { membership: data });
+    });
+});
+
+//add membership in database
+router.post("/membership/new", (req, res) => {
+    // console.log('before', req.body.description)
+    // var description = "<pre>" + req.body.description + "</pre>"
+    // console.log('after', req.body.description)
+    db.Membership.create(
+        {
+            title: req.body.title,
+            price: req.body.price,
+            description: req.body.description
+        }
+    ).then(data => {
+        res.redirect("/admin/membership")
+    });
+});
+
+//edit membership - show update membership
+router.get("/membership/:id/edit", (req, res) => {
+    console.log(req.params.id)
+    db.Membership.findOne({
+        where: {
+            id: req.params.id
+        }
+    }).then(data => {
+        res.render("adminMembershipEdit", { editMembership: data })
+    });
+});
+
+//update - update database
+router.put("/membership/:id", (req, res) => {
+    db.Membership.update(req.body, {
+        where: {
+            id: req.params.id
+        }
+    }).then(data => {
+        res.redirect("/admin/membership")
+    }
+        )
+});
+
+//delete membership in database
+router.delete("/membership/:id", (req, res) => {
+    // console.log(req.params.id);
+    db.Membership.destroy({
+        where: {
+            id: req.params.id
+        }
+    }).then(data => {
+        res.redirect("/admin/membership")
     });
 });
 

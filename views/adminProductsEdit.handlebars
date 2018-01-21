@@ -57,6 +57,9 @@
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary">Update Product</button>
+                    <a href="/admin/products">
+                        <button type="button" class="btn btn-info">Cancel</button>
+                    </a>
                 </div>{{!-- container --}}
             </form>
         </div>
@@ -64,3 +67,9 @@
     </div>
     <!-- second card -->
 </div>{{!-- container --}}
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#admin-ul").show();
+        $("#public-ul").hide();
+    });
+</script>

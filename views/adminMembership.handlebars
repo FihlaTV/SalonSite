@@ -1,0 +1,147 @@
+<br>
+<div class="container">
+    <div class="card">
+        <!-- Default card contents -->
+        <div class="card-header">
+            <h4 class="card-title">Membership Packages</h4>
+        </div>
+        <div class="card-block">
+
+            <!-- Table -->
+            <div style="height: 500px;overflow:auto;">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>
+                                <strong>Title</strong>
+                            </th>
+                            <th>
+                                <strong>Price</strong>
+                            </th>
+                            <th>
+                                <strong>Description</strong>
+                            </th>
+                            <th>
+                                <strong>Edit</strong>
+                            </th>
+                            <th>
+                                <strong>Delete</strong>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{!-- show membership --}} {{#each membership}}
+                        <tr>
+                            <td>{{this.title}} </td>
+                            <td>${{this.price}}</td>
+                            <td>
+                                <i data-toggle="modal" data-target=".bd-example-modal-sm{{@index}}" class="fa fa-info-circle" aria-hidden="true">
+                            </td>
+
+                            <div class="modal fade bd-example-modal-sm{{@index}}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-sm">
+                                    <div class="modal-content container">
+                                        <strong>Description:</strong>
+                                        <pre>{{this.description}}</pre>
+                                    </div>
+                                </div>
+                            </div>
+                            {{!-- update --}}
+                            <td>
+                                <form action="/admin/membership/{{this.id}}/edit" method="GET">
+                                    <button type="submit" class="btn btn-info btn-sm">Edit</i>
+                                    </button>
+                                </form>
+                            </td>
+                            {{!-- delete --}}
+                            <td>
+                                <form action="/admin/membership/{{this.id}}?_method=DELETE" method="POST">
+                                    <button type="submit" class="btn btn-danger btn-sm button-delete">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- first card body -->
+    </div>
+    <!--first card -->
+    <br> {{!-- Add new membership --}}
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Add Promotion</h3>
+        </div>
+        <!-- penel-heading -->
+        <div class="card-block">
+            <form class="form-group" action="/admin/membership/new" method="POST">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="">Title</label>
+                                <input type="text" class="form-control" name="title" placeholder="Required" required>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="">Price</label>
+                                <input type="text" class="form-control" name="price" placeholder="Required" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="">Description</label>
+                                <pre><textarea class="form-control" name="description" placeholder="Description" row="50" style="height:20em"></textarea></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Add Promotion</button>
+                    <a href="/admin/membership">
+                        <button type="button" class="btn btn-info">Cancel</button>
+                    </a>
+                </div>{{!-- container --}}
+            </form>
+        </div>
+        <!-- card-block -->
+    </div>
+    <!-- second card -->
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#admin-ul").show();
+        $("#public-ul").hide();
+
+        $(".button-delete").on("click", function (e) {
+            e.preventDefault();
+
+            swal({
+                title: "Are you sure?",
+                text: "You will not be able to recover this membership package!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes, delete it!",
+                closeOnConfirm: false
+            },
+                function (isConfirm) {
+                    if (isConfirm) {
+                        swal("Deleted!", "Your data has been deleted.", "success");
+                        console.log("Frm: ", e.currentTarget.form);
+                        e.currentTarget.form.submit();
+                        return true;
+                    } else {
+                        swal("Cancelled", "Your imaginary file is safe :)", "error");
+                        return false;
+                    }
+                });
+        });
+    });
+
+    function deleteProduct() {
+    }
+</script>

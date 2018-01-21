@@ -37,7 +37,7 @@
                 
                             <div class="modal fade bd-example-modal-sm{{@index}}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-sm">
-                                    <div class="modal-content">
+                                    <div class="modal-content container">
                                         <p><strong>Name:</strong> {{this.name}}</p>
                                         <p><strong>Last Name:</strong> {{this.lastname}}</p>
                                         <p><strong>Password:</strong> {{this.password}}</p>
@@ -66,7 +66,7 @@
                             {{!-- delete --}}
                             <td>
                                 <form action="/admin/customers/{{this.id}}?_method=DELETE" method="POST">
-                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                    <button type="submit" class="btn btn-danger btn-sm button-delete">Delete</button>
                                 </form>
                             </td>
                         </tr>
@@ -107,7 +107,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Balance</label>
-                                <input type="text" class="form-control" name="balance" placeholder="x.xx">
+                                <input type="text" class="form-control" name="balance" placeholder="x.xx" required>
                             </div>
                             <div class="form-group">
                                 <label for="">Last Visit</label>
@@ -129,7 +129,7 @@
                         <div class="col">
                             <div class="form-group">
                                 <label for="">Email</label>
-                                <input type="text" class="form-control" name="email" placeholder="REQUIRED" required>
+                                <input type="email" class="form-control" name="email" placeholder="REQUIRED" required>
                             </div>
                             <div class="form-group">
                                 <label for="">Address1</label>
@@ -202,7 +202,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Zip</label>
-                                <input type="text" class="form-control" name="zip" placeholder="zip">
+                                <input type="text" class="form-control" name="zip" placeholder="zip" required>
                             </div>
                             <div class="form-group">
                                 <label for="">Photo</label>
@@ -217,6 +217,9 @@
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary">Add Customer</button>
+                    <a href="/admin/customers">
+                        <button type="button" class="btn btn-info">Cancel</button>
+                    </a>
                 </div>{{!-- container --}}
             </form>
         </div>
@@ -226,8 +229,36 @@
 </div>
 <br>
 <script type="text/javascript">
-    $(document).ready(function() {
+    $(document).ready(function () {
         $("#admin-ul").show();
         $("#public-ul").hide();
+
+        $(".button-delete").on("click", function (e) {
+            e.preventDefault();
+
+            swal({
+                title: "Are you sure?",
+                text: "You will not be able to recover this customer!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes, delete it!",
+                closeOnConfirm: false
+            },
+                function (isConfirm) {
+                    if (isConfirm) {
+                        swal("Deleted!", "Customer has been deleted.", "success");
+                        console.log("Frm: ", e.currentTarget.form);
+                        e.currentTarget.form.submit();
+                        return true;
+                    } else {
+                        swal("Cancelled", "Your imaginary file is safe :)", "error");
+                        return false;
+                    }
+                });
+        });
     });
+
+    function deleteProduct() {
+    }
 </script>
