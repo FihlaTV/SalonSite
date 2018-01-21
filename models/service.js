@@ -40,5 +40,6 @@ module.exports = function (sequelize, DataTypes) {
     Service.associate = (models) => {
         Service.belongsToMany(models.Staff, { through: models.Staff_service });
     };
+    
     return Service;
 };

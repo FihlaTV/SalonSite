@@ -44,21 +44,25 @@ module.exports = function (sequelize, DataTypes) {
         Staff.belongsToMany(models.Service, {
             through: models.Staff_service
         });
+
         Staff.belongsTo(models.Email, {
             foreignKey: {
                 allowNull: false
             }
         });
+
         Staff.belongsTo(models.Phone, {
             foreignKey: {
                 allowNull: false
             }
         });
+        
         Staff.belongsTo(models.Address, {
             foreignKey: {
                 allowNull: false
             }
         });
     };
+
     return Staff;
 }

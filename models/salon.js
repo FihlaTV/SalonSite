@@ -17,26 +17,24 @@ module.exports = function(sequelize, DataTypes) {
     });
 
   Salon.associate =  (models)=> {
-   
     Salon.belongsTo(models.Email, {
       foreignKey: {
         allowNull: false
       }
     });
+
     Salon.belongsTo(models.Phone, {
       foreignKey: {
         allowNull: false
       }
     });
+
     Salon.belongsTo(models.Address, {
       foreignKey: {
         allowNull: false
       }
     });
   };
-
-
-
 
   return Salon;
 };

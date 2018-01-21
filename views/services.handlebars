@@ -1,28 +1,14 @@
-<div id="ServicesDiv" class="services-content">
-    <table class="table table-striped">
+<div id="ServicesDiv" class="services-content table-responsive">
+    <table class="table table-striped table-hover">
         <tbody>
             {{#each services}}
             <tr>
-                <td style="width: 10%">
-                    <img src="../assets/images/bob3.jpg" alt="service photo" class="service-pic">
-                </td>
-                <td style="width: 15%; vertical-align: middle;">
-                                <strong>Member Price:</strong> {{member_price}}<br />
-                                <strong>Non-Member Price:</strong> {{nonmember_price}}
-                </td>
                 <td style="vertical-align: middle;">
                     <h2>{{name}}</h2>
-                    <p>
-                                {{comment}}
-                        Execution dock hogshead fathom gangplank lugsail hornswaggle marooned no prey, no pay barque starboard pillage fire in the
-                        hole spike weigh anchor Buccaneer Cat o'nine tails landlubber or just lubber quarterdeck chantey
-                        doubloon jack squiffy deadlights killick bilge water mutiny grog blossom. Topmast parrel six pounders
-                        rum clipper nipper pinnace bring a spring upon her cable prow Arr no prey, no pay rutters blow the
-                        man down ye fathom yo-ho-ho gangway hempen halter clap of thunder crow's nest hulk doubloon Sink
-                        me smartly Plate Fleet tackle lateen sail. Man-of-war Sink me furl Spanish Main yo-ho-ho spike Jack
-                        Tar plunder black jack interloper come about sutler topgallant spyglass pink parrel hornswaggle reef
-                        Jack Ketch maroon bucko cable scuttle Gold Road Corsair snow Blimey.
-                    </p>
+                </td>
+                <td style="width: 20%; vertical-align: middle;">
+                                <strong>Member Price:</strong> {{member_price}}<br />
+                                <strong>Non-Member Price:</strong> {{nonmember_price}}
                 </td>
             </tr>
             {{/each}}

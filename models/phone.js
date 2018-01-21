@@ -12,12 +12,15 @@ module.exports = function (sequelize, DataTypes) {
         Phone.hasMany(models.Salon, {
             onDelete: "cascade"
         });
+
         Phone.hasMany(models.Customer, {
             onDelete: "cascade"
         });
+
         Phone.hasMany(models.Staff, {
             onDelete: "cascade"
         });
     };
+    
     return Phone;
 };

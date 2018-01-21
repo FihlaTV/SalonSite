@@ -34,7 +34,7 @@ router.post("/products/new", (req, res) => {
 });
 //edit product - show update product
 router.get("/products/:id/edit", (req, res) => {
-    console.log(req.params.id)
+    //console.log(req.params.id)
     db.Product.findOne({
         where: {
             id: req.params.id
@@ -71,7 +71,7 @@ router.get("/services", (req, res) => {
     db.Service.findAll({
         order: [["name", "ASC"]]
     }).then(data => {
-        console.log(data);
+        //console.log(data);
         res.render("adminservices", { services: data });
     });
 });
@@ -89,19 +89,19 @@ router.post("/services/new", (req, res) => {
             comment: req.body.comment,
         }
     ).then(data => {
-        console.log(data);
+        //console.log(data);
         res.redirect("/admin/services")
     });
 });
 //edit service - show update service
 router.get("/services/:id/edit", (req, res) => {
-    console.log(req.params.id)
+    //console.log(req.params.id)
     db.Service.findOne({
         where: {
             id: req.params.id
         }
     }).then(data => {
-        console.log(data);
+        //console.log(data);
         res.render("adminServicesEdit", { editservice: data })
     });
 });
@@ -112,7 +112,7 @@ router.put("/services/:id", (req, res) => {
             id: req.params.id
         }
     }).then(data => {
-        console.log(data);
+        //console.log(data);
         res.redirect("/admin/services")
     })
 })
@@ -124,7 +124,7 @@ router.delete("/services/:id", (req, res) => {
             id: req.params.id
         }
     }).then(data => {
-        console.log(data);
+        //console.log(data);
         res.redirect("/admin/services")
     });
 });
@@ -140,7 +140,7 @@ router.get("/salon/edit", (req, res) => {
             , db.Email, db.Phone
         ]
     }).then(data => {
-        console.log(data)
+        //console.log(data)
         res.render("adminSalonEdit", { editSalon: data })
     });
 });
@@ -201,10 +201,12 @@ router.post("/staff/new", (req, res) => {
     var emailId;
     var addressId;
     var phoneId;
+
     db.Email.create({
         email: req.body.email
     }).then((newEmail) => {
         emailId = newEmail.id;
+
         return db.Address.create({
             address1: req.body.address1,
             address2: req.body.address2,
@@ -215,6 +217,7 @@ router.post("/staff/new", (req, res) => {
 
     }).then((newAddress) => {
         addressId = newAddress.id;
+
         return db.Phone.create({
             mobile: req.body.mobile,
             home: req.body.home
@@ -252,7 +255,7 @@ router.post("/staff/new", (req, res) => {
 });
 //edit staff - show update product
 router.get("/staff/:id/edit", (req, res) => {
-    console.log(req.params.id)
+    //console.log(req.params.id)
     db.Staff.findOne({
         where: {
             id: req.params.id
@@ -338,10 +341,12 @@ router.post("/customers/new", (req, res) => {
     var emailId;
     var addressId;
     var phoneId;
+
     db.Email.create({
         email: req.body.email
     }).then((newEmail) => {
         emailId = newEmail.id;
+
         return db.Address.create({
             address1: req.body.address1,
             address2: req.body.address2,
@@ -352,6 +357,7 @@ router.post("/customers/new", (req, res) => {
 
     }).then((newAddress) => {
         addressId = newAddress.id;
+
         return db.Phone.create({
             mobile: req.body.mobile,
             home: req.body.home
@@ -389,7 +395,7 @@ router.post("/customers/new", (req, res) => {
 });
 //edit customers - show update product
 router.get("/customers/:id/edit", (req, res) => {
-    console.log(req.params.id)
+    //console.log(req.params.id)
     db.Customer.findOne({
         where: {
             id: req.params.id
@@ -474,5 +480,3 @@ router.get("/staffservice", (req, res) => {
 });
 
 module.exports = router;
-
-

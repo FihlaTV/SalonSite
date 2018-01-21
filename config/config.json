@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "root",
-    "password": "password",
-    "database": "salon_db",
-    "host": "127.0.0.1",
+    "username": "lr4ucn1533y29zny",
+    "password": "pxkt9h490ixyk0oa",
+    "database": "d1fsxh5lvw5lf41g",
+    "host": "l6slz5o3eduzatkw.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
     "dialect": "mysql"
   },
   "test": {

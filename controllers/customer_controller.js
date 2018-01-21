@@ -10,10 +10,12 @@ router.post("/new", (req, res) => {
     var emailId;
     var addressId;
     var phoneId;
+
     db.Email.create({
         email:req.body.email
     }).then((newEmail) => {
         emailId = newEmail.id;
+
         return db.Address.create({
             address1: "req.body.address1",
             address2: "req.body.address2",
@@ -24,6 +26,7 @@ router.post("/new", (req, res) => {
 
     }).then((newAddress) => {
         addressId = newAddress.id;
+
         return db.Phone.create({
             mobile: req.body.mobile,
             home: req.body.home
@@ -31,9 +34,9 @@ router.post("/new", (req, res) => {
     }).then((newPhone) => {
         phoneId = newPhone.id;
 
-        console.log('adding new customer', 'email:', emailId,
-        'address:', addressId,
-        'phone:', phoneId)
+        // console.log('adding new customer', 'email:', emailId,
+        // 'address:', addressId,
+        // 'phone:', phoneId)
         return db.Customer.create({
             name: req.body.name,
             lastname: req.body.lastname,
@@ -47,20 +50,14 @@ router.post("/new", (req, res) => {
             AddressId: addressId,
             PhoneId: phoneId
         }, {
-                include: [db.Address
-                    , db.Email, db.Phone
-                ]
+                include: [db.Address, db.Email, db.Phone]
             });
     }).then(data => {
-        console.log(data);
+        //console.log(data);
         res.json(data)
     }).catch((error) => {
         res.json(error);
     })
 })
 
-
 module.exports = router;
-
-
-
