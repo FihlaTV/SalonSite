@@ -65,12 +65,12 @@ router.post("/leads", (req, res) => {
 });
 
 //show product brand on the product page
-router.get("/products", (req, res) => {
+router.get("/products999", (req, res) => {
   db.Product.findAll({
     attributes:["brand","photo", "id"],
     group:"brand"
   }).then(data =>{
-    //  console.log(data[0].dataValues.brand);
+    //console.log("Damn data:", data);
     res.render("products", { productBrands: data });
   });
 
@@ -83,9 +83,17 @@ router.get("/products/:brand", (req, res)=>{
       brand:req.params.brand
     } 
   }).then(data =>{
-    console.log("data2: ", data)
+    //console.log("data2: ", data)
     res.json({products: data});
     //res.render("products", {products: data});
+  });
+});
+
+//show product brand on the product page
+router.get("/products", (req, res) => {
+  db.Brand.findAll().then(data =>{
+    console.log("data2: ", data)
+    res.render("products", { productBrands: data });
   });
 });
 
@@ -96,7 +104,7 @@ router.get("/staff", (req, res)=>{
       , db.Email, db.Phone
     ]
   }).then(data=>{
-    //console.log(data);
+    console.log("Dirty Data: ", data);
     res.render("staff", {staff:data});
   });
 });

@@ -9,16 +9,20 @@ module.exports = function (sequelize, DataTypes) {
             }
         }
     });
+    
     Email.associate = function (models) {
         Email.hasMany(models.Salon, {
             onDelete: "cascade"
         });
+
         Email.hasMany(models.Customer, {
             onDelete: "cascade"
         });
+
         Email.hasMany(models.Staff, {
             onDelete: "cascade"
         });
     };
+
     return Email;
 };

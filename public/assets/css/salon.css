@@ -23,6 +23,19 @@ body, html {
     background-size: 100%;
 }
 
+
+.services-content {
+    top: 0;
+    min-width: 80%;
+    min-height: 90%;
+    width: 80%;
+    height: 90%;
+    /*background: url('../images/ocean2.jpg') no-repeat; */
+    background-size: 100%;
+    margin: 0 auto;
+    padding: 20px
+}
+
 .contact-content {
     top: 0;
     min-width: 100%;
@@ -73,7 +86,7 @@ body, html {
 
 .product-pic {
     border-radius: 75px;
-    border: 2px solid rgb(0, 0, 0);
+    border: 1px solid rgb(0, 0, 0);
     width: 150px;
     height: 150px;
 }

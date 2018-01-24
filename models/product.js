@@ -3,7 +3,6 @@ module.exports = function (sequelize, DataTypes) {
         brand: {
             type: DataTypes.STRING,
             allowNULL: false,
-
         },
         name: {
             type: DataTypes.STRING,
@@ -42,12 +41,10 @@ module.exports = function (sequelize, DataTypes) {
         vendor: {
             type: DataTypes.STRING,
             allowNULL: true
-
         },
         photo: {
             type: DataTypes.STRING,
             allowNULL: true
-
         }
 
     });

@@ -2,7 +2,6 @@ module.exports = function (sequelize, DataTypes) {
     var Address = sequelize.define("Address", {
         address1: {
             type: DataTypes.STRING,
-            // allowNULL: false
         },
         address2: {
             type: DataTypes.STRING,
@@ -25,6 +24,7 @@ module.exports = function (sequelize, DataTypes) {
         Address.hasMany(models.Customer, {
             onDelete: "cascade"
         });
+        
         Address.hasMany(models.Staff, {
             onDelete: "cascade"
         });

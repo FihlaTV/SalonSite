@@ -2,9 +2,9 @@
     <div id="ProductBrandsDiv" class="row text-center">
         {{#each productBrands}}
             <div class="col-lg-6 prod-row">
-                {{!-- <button type="button" id="btnSubmit" onclick="sayHelloToMyLittleFriend('{{brand}}');" data-toggle="modal" data-target=".bd-example-modal-sm-{{brand}}" aria-hidden="true" data-value="{{brand}}">{{brand}}</button> --}}
-                <img data-toggle="modal" data-target=".bd-example-modal-lg-{{id}}" aria-hidden="true" src="{{photo}}" alt="{{brand}}"
-                    data-value="{{brand}}" class="brand-pic" onclick="sayHelloToMyLittleFriend('{{brand}}');">
+                {{!-- <button type="button" id="btnSubmit" onclick="sayHelloToMyLittleFriend('{{name}}');" data-toggle="modal" data-target=".bd-example-modal-sm-{{name}}" aria-hidden="true" data-value="{{name}}">{{name}}</button> --}}
+                <img data-toggle="modal" data-target=".bd-example-modal-lg-{{id}}" aria-hidden="true" src="{{photo}}" alt="{{name}}"
+                    data-value="{{name}}" class="brand-pic" onclick="sayHelloToMyLittleFriend('{{name}}');">
             </div>
             <div class="modal fade bd-example-modal-lg-{{id}}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
@@ -27,7 +27,7 @@
         let divs = "";
         jQuery.get("/products/" + prod, function(data) {
             let idx = "";
-console.log("Data: ", JSON.stringify(data, null, 2));
+            console.log("Data: ", JSON.stringify(data, null, 2));
 
             $.each(data.products, function(index, value) {
                 if (index % 2 !== 0) {

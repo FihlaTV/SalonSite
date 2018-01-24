@@ -41,8 +41,8 @@
                             <div class="modal fade bd-example-modal-sm{{@index}}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-sm">
                                     <div class="modal-content container">
-                                            <strong>Description:</strong>
-                                            <pre>{{this.description}}</pre>
+                                        <strong>Description:</strong>
+                                        <pre>{{this.description}}</pre>
                                     </div>
                                 </div>
                             </div>
@@ -83,11 +83,15 @@
                                 <label for="">Title</label>
                                 <input type="text" class="form-control" name="title" placeholder="Required" required>
                             </div>
+                        </div>
+                        <div class="col">
                             <div class="form-group">
                                 <label for="">Price</label>
-                                <input type="text" class="form-control" name="price" placeholder="x.xx" required>
+                                <input type="text" class="form-control" name="price" placeholder="Required" required>
                             </div>
                         </div>
+                    </div>
+                    <div class="row">
                         <div class="col">
                             <div class="form-group">
                                 <label for="">Description</label>
@@ -95,6 +99,7 @@
                             </div>
                         </div>
                     </div>
+
                     <button type="submit" class="btn btn-primary">Add Promotion</button>
                     <a href="/admin/membership">
                         <button type="button" class="btn btn-info">Cancel</button>
