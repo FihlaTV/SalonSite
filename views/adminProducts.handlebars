@@ -79,7 +79,7 @@
         </div>
         <!-- penel-heading -->
         <div class="card-block">
-            <form class="form-group" action="/admin/products/new" method="POST">
+            <form class="form-group" action="/admin/products/new" method="POST" enctype="multipart/form-data"">
                 <div class="container">
                     <div class="row">
                         <div class="col">
@@ -109,7 +109,7 @@
                             <div class="form-group">
                                 <label for="">Cost</label>
 
-                                <input type="text" class="form-control" name="cost" placeholder="Cost" required>
+                                <input type="text" class="form-control" name="cost" placeholder="x.xx" required>
                             </div>
                             <div class="form-group">
                                 <label for="">Vendor</label>
@@ -118,7 +118,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Photo</label>
-                                <input type="text" class="form-control" name="photo" placeholder="Photo">
+                                <input type="file" class="form-control" name="photo" placeholder="Photo">
 
                             </div>
                         </div>

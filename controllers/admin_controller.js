@@ -1,6 +1,7 @@
 var express = require("express");
 var router = express.Router();
 var db = require("../models");
+const fileUpload = require('express-fileupload');
 const SALON_NAME = "Blvd6 Salon";
 
 router.get("/", (req, res) => {
@@ -18,7 +19,13 @@ router.get("/products", (req, res) => {
 
 //add product in database
 router.post("/products/new", (req, res) => {
-    // console.log(req.body)
+    // var photoFile = req.files.photo;
+    // photoFile.mv("../public/assets/images/productUpload", err =>{
+    //     if(err){
+    //         return res.status(500).send(err);
+    //     }
+    // });
+    console.log(req.body)
     db.Product.create(
         {
             brand: req.body.brand,
