@@ -1,7 +1,7 @@
 var express = require("express");
 var router = express.Router();
 var db = require("../models");
-const fileUpload = require('express-fileupload');
+var multer = require("multer");
 const SALON_NAME = "Blvd6 Salon";
 
 router.get("/", (req, res) => {
@@ -18,14 +18,14 @@ router.get("/products", (req, res) => {
 });
 
 //add product in database
-router.post("/products/new", (req, res) => {
-    // var photoFile = req.files.photo;
-    // photoFile.mv("../public/assets/images/productUpload", err =>{
-    //     if(err){
-    //         return res.status(500).send(err);
-    //     }
-    // });
-    console.log(req.body)
+var storage = multer.diskStorage({
+    destination: "./public/assets/images/productUpload",
+    filename: function (req, file, cb) {
+        cb(null, file.originalname);
+    }
+});
+var upload = multer({ storage: storage });
+router.post("/products/new", upload.single("photo"), (req, res) => {
     db.Product.create(
         {
             brand: req.body.brand,
@@ -36,7 +36,7 @@ router.post("/products/new", (req, res) => {
             stock_quantity: req.body.stock_quantity,
             cost: req.body.cost,
             vendor: req.body.vendor,
-            photo: req.body.photo
+            photo: req.file.originalname
         }
     ).then(data => {
         res.redirect("/admin/products")
