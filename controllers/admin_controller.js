@@ -21,7 +21,9 @@ router.get("/products", (req, res) => {
 var storage = multer.diskStorage({
     destination: "./public/assets/images/productUpload",
     filename: function (req, file, cb) {
-        cb(null, file.originalname);
+        console.log("req", req);
+        console.log("file", file.mimetype)
+        cb(null, req.body.name + ".png");
     }
 });
 var upload = multer({ storage: storage });
@@ -36,7 +38,7 @@ router.post("/products/new", upload.single("photo"), (req, res) => {
             stock_quantity: req.body.stock_quantity,
             cost: req.body.cost,
             vendor: req.body.vendor,
-            photo: req.file.originalname
+            photo: req.body.name + ".png"
         }
     ).then(data => {
         res.redirect("/admin/products")

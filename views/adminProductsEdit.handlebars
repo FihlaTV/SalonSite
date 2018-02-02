@@ -6,7 +6,7 @@
         </div>
         <!-- penel-heading -->
         <div class="card-block">
-            <form class="form-group" action="/admin/products/{{editproduct.id}}?_method=PUT" method="POST">
+            <form class="form-group" action="/admin/products/{{editproduct.id}}?_method=PUT" method="POST" enctype="multipart/form-data">
                 <div class="container">
                     <div class="row">
                         <div class="col">
@@ -26,27 +26,27 @@
                                 <label for="">Price</label>
                                 <input type="text" class="form-control" name="price" placeholder="price" value="{{editproduct.price}}">
                             </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="">Stock Quantity</label>
-                                <input type="text" class="form-control" name="stock_quantity" placeholder="stock_quantity" value="{{editproduct.stock_quantity}}">
-
-                            </div>
                             <div class="form-group">
                                 <label for="">Cost</label>
 
                                 <input type="text" class="form-control" name="cost" placeholder="cost" value="{{editproduct.cost}}">
                             </div>
                             <div class="form-group">
+                                <label for="">Stock Quantity</label>
+                                <input type="text" class="form-control" name="stock_quantity" placeholder="stock_quantity" value="{{editproduct.stock_quantity}}">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
                                 <label for="">Vendor</label>
                                 <input type="text" class="form-control" name="vendor" placeholder="vendor" value="{{editproduct.vendor}}">
-
+                            </div>
+                            <div class="form-group">
+                                <img src="/assets/images/productUpload/test.png" + "{{editproduct.photo}}" alt="" width="350" height="300">
                             </div>
                             <div class="form-group">
                                 <label for="">Photo</label>
-                                <input type="text" class="form-control" name="photo" placeholder="photo" value="{{editproduct.photo}}">
-
+                                <input type="file" class="form-control" name="photo" placeholder="photo">
                             </div>
                         </div>
                         <div class="col">
