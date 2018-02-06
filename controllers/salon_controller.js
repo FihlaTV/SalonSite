@@ -91,7 +91,9 @@ router.get("/products/:brand", (req, res)=>{
 
 //show product brand on the product page
 router.get("/products", (req, res) => {
-  db.Brand.findAll().then(data =>{
+  db.Brand.findAll({
+    attributes:["name", "description", "photo", "id"]
+  }).then(data =>{
     console.log("data2: ", data)
     res.render("products", { productBrands: data });
   });

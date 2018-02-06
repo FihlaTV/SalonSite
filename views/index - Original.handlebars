@@ -1,0 +1,60 @@
+<div id="ServicesDiv" class="full-content">
+    <p id="service-text" data-name="Full Brazilian Blow-Outs!"></p>
+</div>
+<script>
+    let svcImgs = [
+        {
+            index: 0,
+            title: 'Blow Dry!', 
+            url: 'url("../assets/images/blvd6pics/BLVD_6_SPACE-3.jpg")'
+        }, 
+        {
+            index: 1,
+            title: 'Color!',
+            url: 'url("../assets/images/blvd6pics/BLVD_6_SPACE-4.jpg")',
+        },
+        {
+            index: 2,
+            title: 'Men\'s Haircut!',
+            url: 'url("../assets/images/blvd6pics/BLVD_6_SPACE-5.jpg")'
+        }, 
+        {
+            index: 3,
+            title: 'Full Brazilian Blow-Outs!',
+            url: 'url("../assets/images/blvd6pics/BLVD_6_SPACE-9.jpg")'
+        },
+        {
+            index: 4,
+            title: 'Special Occassion Up-Do!',
+            url: 'url("../assets/images/blvd6pics/BLVD_6_SPACE-1.jpg")'
+        }
+    ];
+
+    $(document).ready(function () {
+        setInterval(changeService, 3000);
+
+        $("#iHome").addClass("active");
+
+        $("#admin-ul").hide();
+        $("#public-ul").show();
+    });
+
+    function changeService() {
+        let curImg = $("#service-text").attr("data-name");
+        let curImgIdx = svcImgs.map(function (e) {
+            return e.title;
+        }).indexOf(curImg);
+
+        if (curImgIdx >= 0 && curImgIdx < svcImgs.length - 1) {
+            let newIdx = curImgIdx + 1;
+
+            $(".full-content").css("background", `no-repeat center/100% ${svcImgs[newIdx].url}`);
+            $("#service-text").attr("data-name", svcImgs[newIdx].title);
+        } else {
+            $(".full-content").css("background", `no-repeat center/100% ${svcImgs[0].url}`);
+            $("#service-text").attr("data-name", svcImgs[0].title);
+
+            curImgIdx = 0;
+        }
+    }
+</script>

@@ -1,41 +1,223 @@
-<div id="ServicesDiv" class="full-content">
-    <p id="service-text">Full Brazilian Blow-Outs!</p>
+<!-- Start of Page 1 (Home) -->
+<div id="HomeDiv" class="full-content">
+    <p id="service-text" data-name="Full Brazilian Blow-Outs!"></p>
 </div>
+<!-- End of Page 1 -->
+<!-- Start of Page 2 (About) -->
+<div class="aboutus-content">
+    <!-- <div class="jumbotron"> -->
+        <div class="container">
+            <img src="/assets/images/RoseGoldAboutUs.png" alt="aboutus">
+            <!-- <h1 class="display-3 about-us">About Us!</h1> -->
+            <p>Marianne Rimawi, formerly of Moi Salon, and Christopher Rey of Christopher Rey Salon, have joined forces to create a new, dynamic space together at Blvd 6 Salon!</p>
+            <p>We at Blvd 6 Salon want to make a positive and lasting impression while bringing you the highest quality in hair services, professional products, and individual attention.</p>
+            <p>By demonstrating healthy hair habits and setting achievable hair goals with the most professional hair care products, clients are well equipped to maintain long-lasting, lustrous locks at home.</p>
+            <p>In addition, we're very proud to be a Green Circle Salon, participating in the most environmentally friendly salon practices in the world.  After all, impressions matter and we at Blvd 6 Salon strive to leave a lasting footprint that's positively beautiful.</p>
+        </div>
+    <!-- </div> -->
+
+    <div class="container">
+        <!-- Example row of columns -->
+        <div class="row">
+            <div class="col-md-6">
+                <h2>Marianne Rimawi</h2>
+                <img src="../assets/images/BLVD_6_MARIANNE-4.jpg" alt="Marianne Rimawi" class="profile-pic left">
+                <p>Marianne has been a hairstylist for over 20 years and a salon owner for the last decade.  Her latest creation, opening Blvd 6 Salon with Christopher Rey, is the most exciting addition on a spectacular career journey.  She has appeared on TV as a hair stylist, featured in magazines, and also taught her peers on stage and in salon.</p>
+                <p>Marianne is a loving mother to her 11 year old son and her two fur babies.  She loves to explore California and the surrounding countries.  If and when she has free time, you can find her working out, having a relaxing treatment at the spa, or reading a book.</p>
+            </div>
+            <div class="col-md-6">
+                <h2>Christopher Rey</h2>
+                <img src="../assets/images/BLVD_6_REY.jpg" alt="Christopher Rey" class="profile-pic left">
+                <p>Christopher Rey has over 15 years experience in the hair industry.  He specializes in helping clients achieve their hair goals and teaches them how to maintain their hair at home.  Christopher Rey is certified in four different techniques and has 12 years of experience in utilizing extensions to cultivate versatile hairstyles for day-to-night looks.  As a trained colorist, he has advanced experience working with red, blonde, and brunette hues.</p>
+                <p>Living outside of the Valley, as a West Hollywood resident, Rey has a passion for personal fitness and good food.  He enjoys being a part of adrenaline pumping activities and participates in marathons and triathalons.</p>
+            </div>
+        </div>
+
+        <hr>
+        <h2 class="text-center">
+            Additional Staff
+        </h2>
+        <div class="row text-center">
+            <div class="col-md-6">
+                <h4>
+                    <img class="profile-pic" src="../assets/images/BLVD_6_JAIME.jpg" alt="Jaime"><br /> Jaime
+                </h4>
+            </div>
+            <div class="col-md-6">
+                <h4>
+                    <img class="profile-pic" src="../assets/images/BLVD_6_TRACI.jpg" alt="Traci"><br /> Traci
+                </h4>
+            </div>
+        </div>
+
+        <hr>
+    </div>
+</div>
+
+<!-- End of Page 2 -->
+
+<!-- Start of Page 3 (Services) -->
+<div id="ServicesDiv" class="services-content table-responsive">
+    <img src="/assets/images/RoseGoldAboutUs.png" alt="aboutus">
+    <table class="table table-striped table-hover">
+        <tbody>
+            {{#each services}}
+            <tr>
+                <td style="vertical-align: middle;">
+                    <h2>{{name}}</h2>
+                </td>
+                <td style="width: 20%; vertical-align: middle;">
+                                <strong>Member Price:</strong> {{member_price}}<br />
+                                <strong>Non-Member Price:</strong> {{nonmember_price}}
+                </td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</div>
+<!-- End of Page 3 -->
+
+<!-- Start of Page 4 (Products) -->
+<div class="container products-content">
+    <div id="ProductBrandsDiv" class="row text-center">
+            <img src="/assets/images/RoseGoldAboutUs.png" alt="aboutus">
+        {{#each productBrands}}
+            <div class="col-lg-6 prod-row">
+                {{!-- <button type="button" id="btnSubmit" onclick="sayHelloToMyLittleFriend('{{name}}');" data-toggle="modal" data-target=".bd-example-modal-sm-{{name}}" aria-hidden="true" data-value="{{name}}">{{name}}</button> --}}
+                <img data-toggle="modal" data-target=".bd-example-modal-lg-{{id}}" aria-hidden="true" src="{{photo}}" alt="{{name}}"
+                    data-value="{{name}}" class="brand-pic" onclick="sayHelloToMyLittleFriend('{{name}}');">
+            </div>
+            <div class="modal fade bd-example-modal-lg-{{id}}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                    </div>
+                </div>
+            </div>
+        {{/each}}
+    </div>
+</div>
+<!-- End of Page 4 -->
+
+<!-- Start of Page 5 (Contact Us) -->
+<div class="container contact-content">
+            <img src="/assets/images/RoseGoldAboutUs.png" alt="aboutus">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-12 col-lg-12 salon-box">
+            <h2>{{contactus.dataValues.name}}</h2>
+            <span>{{contactus.Address.dataValues.address1}}</span><br />
+            <span>{{contactus.Address.dataValues.address2}}</span><br />
+            <span>{{contactus.Address.dataValues.city}}, </span>
+            <span>{{contactus.Address.dataValues.state}}</span>
+            <span>{{contactus.Address.dataValues.zip}}</span><br />
+            <span>Phone: {{contactus.Phone.dataValues.mobile}}</span><br />
+            <span>Email: <a href="mailto:{{contactus.Email.dataValues.email}}?subject=Inquiry from www.blvd6.com">{{contactus.Email.dataValues.email}}</a></span>
+        </div>  
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 contact-box">
+            <form action="/leads" method="POST">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 firstNameCont">
+                            <label for="firstNameContact" class="label-short">First Name:</label>
+                            <input type="text" class="input-short" id="firstNameContact" name="firstNameContact">
+                        </div>
+                        <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 lastNameCont">
+                            <label for="lastNameContact" class="label-short">Last Name:</label>
+                            <input type="text" class="input-short" id="lastNameContact" name="lastNameContact">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="phoneContact" class="label-short">Phone:</label>
+                    <input type="tel" class="form-control" id="phoneContact" name="phoneContact">
+                </div>
+                <div class="form-group">
+                    <label for="emailContact" class="label-short">Email address:</label>
+                    <input type="email" class="form-control" id="emailContact" name="emailContact">
+                </div>
+                <div class="form-group">
+                    <label for="reasonContact" class="label-short">Choose one:</label>
+                    <select id="reasonContact" name="reasonContact" class="form-control">
+                        <option value="General Inquiry">Make me beautiful!</option>
+                        <option value="Special Occasion Consultation">Can I get a special occasion consultation?</option>
+                        <option value="Questions">I just have some questions.</option>  
+                    </select>
+                    <div class="form-group">
+                        <textarea id="addlContact" name="addlContact" class="form-control" rows="8" placeholder="Tell us more..."></textarea>   
+                    </div>
+                    <button type="submit" id="submitContact" class="btn btn-default">Submit</button>
+                </form> 
+            </div>
+        </div>
+        <!--<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 map-div"><div id="pano"></div></div>-->
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 map-div"><div id="map"></div></div>
+    </div>
+    <!-- End of Page 5 -->
+
 <script>
-    let svcImgs = [
-        {
-            title: 'Blow Dry!', 
-            url: 'url("../assets/images/blowdry.jpg")'
-        }, 
-        {
-            title: 'Color!',
-            url: 'url("../assets/images/color2.jpg")',
-        },
-        {
-            title: 'Men\'s Haircut!',
-            url: 'url("../assets/images/MensHaircut.jpg")'
-        }, 
-        {
-            title: 'Full Brazilian Blow-Outs!',
-            url: 'url("../assets/images/stylists.jpg")'
-        },
-        {
-            title: 'Special Occassion Up-Do!',
-            url: 'url("../assets/images/updo.png")'
-        }
-    ];
-
     $(document).ready(function () {
-        setInterval(changeService, 1500);
+        // For page 1
+        setInterval(changeService, 3000);
 
-        $("#iHome").addClass("active");
+        // $("#iHome").addClass("active");
 
         $("#admin-ul").hide();
         $("#public-ul").show();
+
+        // // For page 2
+        // $("#iAbout").addClass("active");
+
+        // // For page 3
+        // $("#iServices").addClass("active");
+
+        // $("#admin-ul").hide();
+        // $("#public-ul").show();
+
+        // // For page 4
+        // $("#iProducts").addClass("active");
+
+        // $("#admin-ul").hide();
+        // $("#public-ul").show();
+
+        // // For page 5
+        // $("#iContact").addClass("active");
+
+        // $("#admin-ul").hide();
+        // $("#public-ul").show();
     });
 
+    // For page 1
+    let svcImgs = [
+        {
+            index: 0,
+            title: 'Blow Dry!', 
+            url: 'url("../assets/images/blvd6pics/BLVD_6_SPACE-3.jpg")'
+        }, 
+        {
+            index: 1,
+            title: 'Color!',
+            url: 'url("../assets/images/blvd6pics/BLVD_6_SPACE-4.jpg")',
+        },
+        {
+            index: 2,
+            title: 'Men\'s Haircut!',
+            url: 'url("../assets/images/blvd6pics/BLVD_6_SPACE-5.jpg")'
+        }, 
+        {
+            index: 3,
+            title: 'Full Brazilian Blow-Outs!',
+            url: 'url("../assets/images/blvd6pics/BLVD_6_SPACE-9.jpg")'
+        },
+        {
+            index: 4,
+            title: 'Special Occassion Up-Do!',
+            url: 'url("../assets/images/blvd6pics/BLVD_6_SPACE-1.jpg")'
+        }
+    ];
+
     function changeService() {
-        let curImg = $("#service-text").html();
+        let curImg = $("#service-text").attr("data-name");
         let curImgIdx = svcImgs.map(function (e) {
             return e.title;
         }).indexOf(curImg);
@@ -44,33 +226,70 @@
             let newIdx = curImgIdx + 1;
 
             $(".full-content").css("background", `no-repeat center/100% ${svcImgs[newIdx].url}`);
-            $("#service-text").html(svcImgs[newIdx].title);
-			
-            switch (svcImgs[newIdx].title) {
-                case 'Men\'s Haircut!':
-                    $("#service-text").css("color", "#FFF").css("text-shadow", "1px 1px 0 #b989bd");
-                    break;
-                case 'Blow Dry!':
-                    $("#service-text").css("color", "#FFF").css("text-shadow", "1px 1px 0 #b989bd");
-                    break;
-                case 'Color!':
-                    $("#service-text").css("color", "#000").css("text-shadow", "2px 1px 0 #f9bdf0");
-                    break;
-                case 'Full Brazilian Blow-Outs!':
-                    $("#service-text").css("color", "#FFF").css("text-shadow", "2px 1px 0 #000");
-                    break;
-                case 'Special Occassion Up-Do!':
-                    $("#service-text").css("color", "#FFF").css("text-shadow", "2px 1px 0 #b989bd");
-                    break;
-                default:
-                    $("#service-text").css("color", "#FFF").css("text-shadow", "1px 1px 0 #b989bd");
-                    break;
-            }
+            $("#service-text").attr("data-name", svcImgs[newIdx].title);
         } else {
             $(".full-content").css("background", `no-repeat center/100% ${svcImgs[0].url}`);
-            $("#service-text").html(svcImgs[0].title);
+            $("#service-text").attr("data-name", svcImgs[0].title);
 
             curImgIdx = 0;
         }
     }
+
+    // For page 2
+    $("#admin-ul").hide();
+    $("#public-ul").show();
+
+    // For page 4
+    function sayHelloToMyLittleFriend(prod) {
+        let divs = "";
+
+        jQuery.get("/products/" + prod, function(data) {
+            let idx = "";
+
+            $.each(data.products, function(index, value) {
+                if (index % 2 !== 0) {
+                    idx = "odds";
+                } else {
+                    idx = "evens";
+                }
+
+                divs += `<div class="row prod-row ${idx}">
+                        <div class="col-lg-6">
+                            <img src="${data.products[index].photo}" alt="${data.products[index].name}" class="product-pic">
+                        </div>
+                        <div class="col-lg-6">
+                            <strong>Name: </strong>${data.products[index].name}<br />
+                            <strong>Price: </strong>$${data.products[index].price}<br />
+                            <strong>Description: </strong>${data.products[index].description}
+                        </div>
+                    </div>`;
+            });
+
+            $(".modal-content").html(divs);
+        });
+    }
+
+    // For page 5
+    function initMap() {
+        var salon = {lat: 34.151417, lng: -118.453617};
+        var map = new google.maps.Map(document.getElementById('map'), {
+            center: salon,
+            zoom: 15
+        });
+        var marker = new google.maps.Marker({
+            position: salon,
+            map: map
+        });
+        /*var panorama = new google.maps.StreetViewPanorama(
+            document.getElementById('pano'), {
+            position: salon,
+            pov: {
+                heading: 15,
+                pitch: 10
+            }
+        });
+
+        map.setStreetView(panorama);*/
+    }
 </script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAjc7C1wVVqG6qUwJTS3d55Nu4xxen1yJ4&callback=initMap"></script>
