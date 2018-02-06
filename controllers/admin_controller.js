@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 var db = require("../models");
 var multer = require("multer");
+var fs = require("fs");
 const SALON_NAME = "Blvd6 Salon";
 
 router.get("/", (req, res) => {
@@ -21,8 +22,6 @@ router.get("/products", (req, res) => {
 var storage = multer.diskStorage({
     destination: "./public/assets/images/productUpload",
     filename: function (req, file, cb) {
-        console.log("req", req);
-        console.log("file", file.mimetype)
         cb(null, req.body.name + ".png");
     }
 });
@@ -58,20 +57,20 @@ router.get("/products/:id/edit", (req, res) => {
 });
 
 //update - update database
-router.put("/products/:id", (req, res) => {
+router.put("/products/:id",upload.single("photo"), (req, res) => {
     db.Product.update(req.body, {
         where: {
             id: req.params.id
         }
     }).then(data => {
         res.redirect("/admin/products")
-    }
-        )
+    });
 });
 
 //delete product in database
-router.delete("/products/:id", (req, res) => {
-    // console.log(req.params.id);
+router.delete("/products/:id/:name", (req, res) => {
+    var filePath = "./public/assets/images/productUpload/" + req.params.name + ".png";
+    fs.unlinkSync(filePath); 
     db.Product.destroy({
         where: {
             id: req.params.id
