@@ -86,7 +86,7 @@
         </div>
         <!-- penel-heading -->
         <div class="card-block">
-            <form class="form-group" action="/admin/staff/new" method="POST">
+            <form class="form-group" action="/admin/staff/new" method="POST" enctype="multipart/form-data">
                 <div class="container">
                     <div class="row">
                         <div class="col">
@@ -112,7 +112,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Mobile</label>
-                                <input type="text" class="form-control" name="mobile" placeholder="mobile">
+                                <input type="text" class="form-control" name="mobile" placeholder="mobile" required>
                             </div>
                             <div class="form-group">
                                 <label for="">Home Phone</label>
@@ -196,7 +196,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Zip</label>
-                                <input type="text" class="form-control" name="zip" placeholder="zip" required>
+                                <input type="text" class="form-control" name="zip" placeholder="zip">
                             </div>
                             <div class="form-group">
                                 <label for="">Emergency Contact Name</label>
@@ -208,7 +208,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Photo</label>
-                                <input type="text" class="form-control" name="photo" placeholder="photo">
+                                <input type="file" class="form-control" name="photo" placeholder="photo">
                             </div>
                         </div>
                         <div class="col">

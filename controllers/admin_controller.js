@@ -91,7 +91,14 @@ router.get("/services", (req, res) => {
 });
 
 //add service in database
-router.post("/services/new", (req, res) => {
+storage = multer.diskStorage({
+    destination: "./public/assets/images/serviceUpload",
+    filename: function (req, file, cb) {
+        cb(null, req.body.name + ".png");
+    }
+});
+upload = multer({ storage: storage });
+router.post("/services/new", upload.single("photo"),(req, res) => {
     // console.log(req.body)
     db.Service.create(
         {
@@ -100,7 +107,7 @@ router.post("/services/new", (req, res) => {
             member_price: req.body.member_price,
             nonmember_price: req.body.nonmember_price,
             cost: req.body.cost,
-            photo: req.body.photo,
+            photo: req.body.name + ".png",
             comment: req.body.comment,
         }
     ).then(data => {
@@ -123,7 +130,7 @@ router.get("/services/:id/edit", (req, res) => {
 });
 
 //update - update database
-router.put("/services/:id", (req, res) => {
+router.put("/services/:id", upload.single("photo"), (req, res) => {
     db.Service.update(req.body, {
         where: {
             id: req.params.id
@@ -135,8 +142,9 @@ router.put("/services/:id", (req, res) => {
 });
 
 //delete service in database
-router.delete("/services/:id", (req, res) => {
-    // console.log(req.params.id);
+router.delete("/services/:id/:name", (req, res) => {
+    var filePath = "./public/assets/images/serviceUpload/" + req.params.name + ".png";
+    fs.unlinkSync(filePath); 
     db.Service.destroy({
         where: {
             id: req.params.id
