@@ -42,7 +42,8 @@
                                         <p><strong>Non Member Price:</strong> {{this.nonmember_price}}</p>
                                         
                                         <p><strong>Cost:</strong> ${{this.cost}}</p>
-                                        <p><strong>Photo:</strong> {{this.photo}}</p>
+                                        <p><strong>Photo:</strong></p>
+                                        <img class="img-thumbnail" src="/assets/images/serviceUpload/{{this.photo}}" alt="PLEASE UPLOAD IMAGE">
                                         <p><strong>Comment:</strong> {{this.comment}}</p>
                                     </div>
                                 </div>
@@ -100,7 +101,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Cost</label>
-                                <input type="text" class="form-control" name="cost" placeholder="Cost" required>
+                                <input type="text" class="form-control" name="cost" placeholder="x.xx" required>
                             </div>
                             <div class="form-group">
                                 <label for="">Photo</label>

@@ -54,6 +54,8 @@
                                         <p><strong>Emergency Contact Name:</strong> {{this.emergency_contact_name}}</p>
                                         <p><strong>Emergency Contact Phone:</strong> {{this.emergency_contact_phone}}</p>
                                         <p><strong>Bio:</strong> {{this.bio}}</p>
+                                        <p><strong>Photo:</strong> {{this.bio}}</p>
+                                        <img class="img-thumbnail " src="/assets/images/staffUpload/{{this.photo}}" alt="PLEASE UPLOAD IMAGE">
                                         <p><strong>Comment:</strong> {{this.comment}}</p>
                                     </div>
                                 </div>
@@ -196,7 +198,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Zip</label>
-                                <input type="text" class="form-control" name="zip" placeholder="zip">
+                                <input type="text" class="form-control" name="zip" placeholder="zip" required>
                             </div>
                             <div class="form-group">
                                 <label for="">Emergency Contact Name</label>

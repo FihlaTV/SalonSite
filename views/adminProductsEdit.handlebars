@@ -43,11 +43,11 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Current Photo</label>
-                                <img class="img-thumbnail" src="/assets/images/productUpload/{{editproduct.photo}}" alt="PLEASE UPLOAD IMAGE">
+                                <img id="preview" class="img-thumbnail" src="/assets/images/productUpload/{{editproduct.photo}}" alt="PLEASE UPLOAD IMAGE">
                             </div>
                             <div class="form-group">
                                 <label for="">Change Photo</label>
-                                <input type="file" class="form-control" name="photo" placeholder="photo">
+                                <input type="file" class="form-control" name="photo" onChange= "previewImage(this)" placeholder="Photo">
                             </div>
                         </div>
                         <div class="col">
@@ -73,4 +73,5 @@
         $("#admin-ul").show();
         $("#public-ul").hide();
     });
+   
 </script>
