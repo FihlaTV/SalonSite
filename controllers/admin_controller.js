@@ -2,6 +2,7 @@ var express = require("express");
 var router = express.Router();
 var db = require("../models");
 var multer = require("multer");
+var fs = require("fs");
 const SALON_NAME = "Blvd6 Salon";
 
 router.get("/", (req, res) => {
@@ -21,7 +22,7 @@ router.get("/products", (req, res) => {
 var storage = multer.diskStorage({
     destination: "./public/assets/images/productUpload",
     filename: function (req, file, cb) {
-        cb(null, file.originalname);
+        cb(null, req.body.name + ".png");
     }
 });
 var upload = multer({ storage: storage });
@@ -36,7 +37,7 @@ router.post("/products/new", upload.single("photo"), (req, res) => {
             stock_quantity: req.body.stock_quantity,
             cost: req.body.cost,
             vendor: req.body.vendor,
-            photo: req.file.originalname
+            photo: req.body.name + ".png"
         }
     ).then(data => {
         res.redirect("/admin/products")
@@ -56,20 +57,23 @@ router.get("/products/:id/edit", (req, res) => {
 });
 
 //update - update database
-router.put("/products/:id", (req, res) => {
+router.put("/products/:id", upload.single("photo"), (req, res) => {
     db.Product.update(req.body, {
         where: {
             id: req.params.id
         }
     }).then(data => {
         res.redirect("/admin/products")
-    }
-        )
+    });
 });
 
 //delete product in database
-router.delete("/products/:id", (req, res) => {
-    // console.log(req.params.id);
+router.delete("/products/:id/:name", (req, res) => {
+    //Check if file exist and delete
+    var filePath = "./public/assets/images/productUpload/" + req.params.name + ".png";
+    if(fs.existsSync(filePath)){
+        fs.unlinkSync(filePath);
+    }
     db.Product.destroy({
         where: {
             id: req.params.id
@@ -90,7 +94,14 @@ router.get("/services", (req, res) => {
 });
 
 //add service in database
-router.post("/services/new", (req, res) => {
+storage = multer.diskStorage({
+    destination: "./public/assets/images/serviceUpload",
+    filename: function (req, file, cb) {
+        cb(null, req.body.name + ".png");
+    }
+});
+upload = multer({ storage: storage });
+router.post("/services/new", upload.single("photo"), (req, res) => {
     // console.log(req.body)
     db.Service.create(
         {
@@ -99,7 +110,7 @@ router.post("/services/new", (req, res) => {
             member_price: req.body.member_price,
             nonmember_price: req.body.nonmember_price,
             cost: req.body.cost,
-            photo: req.body.photo,
+            photo: req.body.name + ".png",
             comment: req.body.comment,
         }
     ).then(data => {
@@ -122,7 +133,7 @@ router.get("/services/:id/edit", (req, res) => {
 });
 
 //update - update database
-router.put("/services/:id", (req, res) => {
+router.put("/services/:id", upload.single("photo"), (req, res) => {
     db.Service.update(req.body, {
         where: {
             id: req.params.id
@@ -134,8 +145,13 @@ router.put("/services/:id", (req, res) => {
 });
 
 //delete service in database
-router.delete("/services/:id", (req, res) => {
-    // console.log(req.params.id);
+router.delete("/services/:id/:name", (req, res) => {
+    //Check if file exist and delete
+    var filePath = "./public/assets/images/serviceUpload/" + req.params.name + ".png";
+        if (fs.existsSync(filePath)) {
+            fs.unlinkSync(filePath);
+        }
+   
     db.Service.destroy({
         where: {
             id: req.params.id
@@ -216,7 +232,14 @@ router.get("/staff", (req, res) => {
 });
 
 //add staff in database
-router.post("/staff/new", (req, res) => {
+storage = multer.diskStorage({
+    destination: "./public/assets/images/staffUpload",
+    filename: function (req, file, cb) {
+        cb(null, req.body.name + ".png");
+    }
+});
+upload = multer({ storage: storage });
+router.post("/staff/new", upload.single("photo"), (req, res) => {
     var emailId;
     var addressId;
     var phoneId;
@@ -255,6 +278,7 @@ router.post("/staff/new", (req, res) => {
             hour: req.body.hour,
             emergency_contact_name: req.body.emergency_contact_name,
             emergency_contact_phone: req.body.emergency_contact_phone,
+            photo: req.body.name + ".png",
             comment: req.body.comment,
             EmailId: emailId,
             AddressId: addressId,
@@ -289,7 +313,7 @@ router.get("/staff/:id/edit", (req, res) => {
 });
 
 //update - update database
-router.put("/staff/:id", (req, res) => {
+router.put("/staff/:id", upload.single("photo"), (req, res) => {
     db.Email.update({
         email: req.body.email
     }, {
@@ -322,7 +346,7 @@ router.put("/staff/:id", (req, res) => {
                     hour: req.body.hour,
                     emergency_contact_name: req.body.emergency_contact_name,
                     emergency_contact_phone: req.body.emergency_contact_phone,
-                    photo: req.body.photo,
+                    photo: req.body.name + ".png",
                     comment: req.body.comment
                 }, {
                         where: {
@@ -334,8 +358,12 @@ router.put("/staff/:id", (req, res) => {
 });
 
 //delete staff in database
-router.delete("/staff/:id", (req, res) => {
-    // console.log(req.params.id);
+router.delete("/staff/:id/:name", (req, res) => {
+    //Check if file exist and delete
+    var filePath = "./public/assets/images/staffUpload/" + req.params.name + ".png";
+    if (fs.existsSync(filePath)) {
+        fs.unlinkSync(filePath);
+    }
     db.Staff.destroy({
         where: {
             id: req.params.id
@@ -555,7 +583,7 @@ router.put("/membership/:id", (req, res) => {
     }).then(data => {
         res.redirect("/admin/membership")
     }
-        )
+    )
 });
 
 //delete membership in database

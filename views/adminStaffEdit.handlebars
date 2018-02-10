@@ -1,3 +1,4 @@
+<br>
 <div class="container">
     <div class="card">
         <div class="card-header">
@@ -5,7 +6,7 @@
         </div>
         <!-- penel-heading -->
         <div class="card-block">
-            <form class="form-group" action="/admin/staff/{{editStaff.id}}?_method=PUT" method="POST">
+            <form class="form-group" action="/admin/staff/{{editStaff.id}}?_method=PUT" method="POST" enctype="multipart/form-data">
                 <div class="container">
                     <div class="row">
                         <div class="col">
@@ -41,8 +42,6 @@
                                 <label for="">Email</label>
                                 <input type="text" class="form-control" name="email" placeholder="REQUIRED" value="{{editStaff.Email.dataValues.email}}">
                             </div>
-                        </div>
-                        <div class="col">
                             <div class="form-group">
                                 <label for="">Address1</label>
                                 <input type="text" class="form-control" name="address1" placeholder="address1" value="{{editStaff.Address.dataValues.address1}}">
@@ -51,6 +50,8 @@
                                 <label for="">Address2</label>
                                 <input type="text" class="form-control" name="address2" placeholder="address2" value="{{editStaff.Address.dataValues.address2}}">
                             </div>
+                        </div>
+                        <div class="col">
                             <div class="form-group">
                                 <label for="">City</label>
                                 <input type="text" class="form-control" name="city" placeholder="city" value="{{editStaff.Address.dataValues.city}}">
@@ -125,8 +126,12 @@
                                 <input type="text" class="form-control" name="emergency_contact_phone" placeholder="emergency contact phone" value="{{editStaff.emergency_contact_phone}}">
                             </div>
                             <div class="form-group">
-                                <label for="">Photo</label>
-                                <input type="text" class="form-control" name="photo" placeholder="photo" value="{{editStaff.photo}}">
+                                <label for="">Current Photo</label>
+                                <img class="img-thumbnail" src="/assets/images/staffUpload/{{editStaff.photo}}" alt="PLEASE UPLOAD IMAGE">
+                            </div>
+                            <div class="form-group">
+                                <label for="">Change Photo</label>
+                                <input type="file" class="form-control" name="photo" placeholder="photo">
                             </div>
                         </div>
                         <div class="col">

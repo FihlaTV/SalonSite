@@ -42,7 +42,8 @@
                                         <p><strong>Non Member Price:</strong> {{this.nonmember_price}}</p>
                                         
                                         <p><strong>Cost:</strong> ${{this.cost}}</p>
-                                        <p><strong>Photo:</strong> {{this.photo}}</p>
+                                        <p><strong>Photo:</strong></p>
+                                        <img class="img-thumbnail" src="/assets/images/serviceUpload/{{this.photo}}" alt="PLEASE UPLOAD IMAGE">
                                         <p><strong>Comment:</strong> {{this.comment}}</p>
                                     </div>
                                 </div>
@@ -55,7 +56,7 @@
                             </td>
                             {{!-- delete --}}
                             <td>
-                                <form action="/admin/services/{{this.id}}?_method=DELETE" method="POST">
+                                <form action="/admin/services/{{this.id}}/{{this.name}}?_method=DELETE" method="POST">
                                     <button type="submit" class="btn btn-danger btn-sm button-delete deleteBtn">Delete</button>
                                 </form>
                             </td>
@@ -76,7 +77,7 @@
         </div>
         <!-- penel-heading -->
         <div class="card-block">
-            <form class="form-group" action="/admin/services/new" method="POST">
+            <form class="form-group" action="/admin/services/new" method="POST" enctype="multipart/form-data">
                 <div class="container">
                     <div class="row">
                         <div class="col">
@@ -90,21 +91,21 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Member Price</label>
-                                <input type="text" class="form-control" name="member_price" placeholder="x.xx">
+                                <input type="text" class="form-control" name="member_price" placeholder="x.xx" required>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
                                 <label for="">Non Member Price</label>
-                                <input type="text" class="form-control" name="nonmember_price" placeholder="x.xx">
+                                <input type="text" class="form-control" name="nonmember_price" placeholder="x.xx" required>
                             </div>
                             <div class="form-group">
                                 <label for="">Cost</label>
-                                <input type="text" class="form-control" name="cost" placeholder="Cost" required>
+                                <input type="text" class="form-control" name="cost" placeholder="x.xx" required>
                             </div>
                             <div class="form-group">
                                 <label for="">Photo</label>
-                                <input type="text" class="form-control" name="photo" placeholder="Photo">
+                                <input type="file" class="form-control" name="photo" placeholder="Photo">
                             </div>
                         </div>
                         <div class="col">

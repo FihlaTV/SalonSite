@@ -47,7 +47,8 @@
                                         <p><strong>Stock Quantity:</strong> {{this.stock_quantity}}</p>
                                         <p><strong>Cost:</strong> ${{this.cost}}</p>
                                         <p><strong>Vendor:</strong> {{this.vendor}}</p>
-                                        <p><strong>Photo:</strong> {{this.photo}}</p>
+                                        <p><strong>Photo:</strong></p>
+                                        <img class="img-thumbnail" src="/assets/images/productUpload/{{this.photo}}" alt="PLEASE UPLOAD IMAGE">
                                     </div>
                                 </div>
                             </div>
@@ -59,7 +60,7 @@
                             </td>
                             {{!-- delete --}}
                             <td>
-                                <form action="/admin/products/{{this.id}}?_method=DELETE" method="POST">
+                                <form action="/admin/products/{{this.id}}/{{this.name}}?_method=DELETE" method="POST">
                                     <button type="submit" class="btn btn-danger btn-sm button-delete">Delete</button>
                                 </form>
                             </td>
@@ -79,7 +80,7 @@
         </div>
         <!-- penel-heading -->
         <div class="card-block">
-            <form class="form-group" action="/admin/products/new" method="POST" enctype="multipart/form-data"">
+            <form class="form-group" action="/admin/products/new" method="POST" enctype="multipart/form-data">
                 <div class="container">
                     <div class="row">
                         <div class="col">

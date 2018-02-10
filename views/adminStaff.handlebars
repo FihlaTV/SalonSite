@@ -54,6 +54,8 @@
                                         <p><strong>Emergency Contact Name:</strong> {{this.emergency_contact_name}}</p>
                                         <p><strong>Emergency Contact Phone:</strong> {{this.emergency_contact_phone}}</p>
                                         <p><strong>Bio:</strong> {{this.bio}}</p>
+                                        <p><strong>Photo:</strong> {{this.bio}}</p>
+                                        <img class="img-thumbnail " src="/assets/images/staffUpload/{{this.photo}}" alt="PLEASE UPLOAD IMAGE">
                                         <p><strong>Comment:</strong> {{this.comment}}</p>
                                     </div>
                                 </div>
@@ -66,7 +68,7 @@
                             </td>
                             {{!-- delete --}}
                             <td>
-                                <form action="/admin/staff/{{this.id}}?_method=DELETE" method="POST">
+                                <form action="/admin/staff/{{this.id}}/{{this.name}}?_method=DELETE" method="POST">
                                     <button type="submit" class="btn btn-danger btn-sm button-delete">Delete</button>
                                 </form>
                             </td>
@@ -86,7 +88,7 @@
         </div>
         <!-- penel-heading -->
         <div class="card-block">
-            <form class="form-group" action="/admin/staff/new" method="POST">
+            <form class="form-group" action="/admin/staff/new" method="POST" enctype="multipart/form-data">
                 <div class="container">
                     <div class="row">
                         <div class="col">
@@ -112,7 +114,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Mobile</label>
-                                <input type="text" class="form-control" name="mobile" placeholder="mobile">
+                                <input type="text" class="form-control" name="mobile" placeholder="mobile" required>
                             </div>
                             <div class="form-group">
                                 <label for="">Home Phone</label>
@@ -208,7 +210,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Photo</label>
-                                <input type="text" class="form-control" name="photo" placeholder="photo">
+                                <input type="file" class="form-control" name="photo" placeholder="photo">
                             </div>
                         </div>
                         <div class="col">

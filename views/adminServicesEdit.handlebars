@@ -1,4 +1,4 @@
-<br> {{!-- Add new product --}}
+<br> 
 <div class="container">
 <div class="card">
     <div class="card-header">
@@ -7,7 +7,7 @@
     </div>
     <!-- penel-heading -->
     <div class="card-block">
-        <form class="form-group" action="/admin/services/{{editservice.id}}?_method=PUT" method="POST">
+        <form class="form-group" action="/admin/services/{{editservice.id}}?_method=PUT" method="POST" enctype="multipart/form-data">
             <div class="container">
                 <div class="row">
                     <div class="col">
@@ -23,8 +23,6 @@
                             <label for="">Member Price</label>
                             <input type="text" class="form-control" name="member_price" placeholder="x.xx" value="{{editservice.member_price}}">
                         </div>
-                    </div>
-                    <div class="col">
                         <div class="form-group">
                             <label for="">Non Member Price</label>
                             <input type="text" class="form-control" name="nonmember_price" placeholder="x.xx" value="{{editservice.nonmember_price}}">
@@ -33,15 +31,21 @@
                             <label for="">Cost</label>
                             <input type="text" class="form-control" name="cost" placeholder="Cost" value="{{editservice.cost}}" required>
                         </div>
+                    </div>
+                    <div class="col">
                         <div class="form-group">
-                            <label for="">Photo</label>
-                            <input type="text" class="form-control" name="photo" placeholder="Photo" value="{{editservice.photo}}">
+                            <label for="">Current Photo</label>
+                            <img class="img-thumbnail" src="/assets/images/serviceUpload/{{editservice.photo}}" alt="PLEASE UPLOAD IMAGE">
+                        </div>
+                        <div class="form-group">
+                            <label for="">Change Photo</label>
+                            <input type="file" class="form-control" name="photo" placeholder="Photo">
                         </div>
                     </div>
                     <div class="col">
                         <div class="form-group">
                             <label for="">Comment</label>
-                            <textarea class="form-control" name="comment" placeholder="Comment" row="50" style="height:20em">{{editservice.comment}}"</textarea>
+                            <textarea class="form-control" name="comment" placeholder="Comment" row="50" style="height:25em">{{editservice.comment}}</textarea>
                         </div>
                     </div>
                 </div>
