@@ -47,7 +47,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Change Photo</label>
-                                <input type="file" class="form-control" name="photo" onChange= "previewImage(this)" placeholder="Photo">
+                                <input type="file" class="form-control" name="photo" onChange="previewImage(this)" placeholder="Photo">
                             </div>
                         </div>
                         <div class="col">
@@ -73,5 +73,13 @@
         $("#admin-ul").show();
         $("#public-ul").hide();
     });
-   
+    function previewImage(image) {
+        if (image.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $("#preview").attr("src", e.target.result);
+            }
+        }
+        reader.readAsDataURL(image.files[0]);
+    }
 </script>
