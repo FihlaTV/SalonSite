@@ -1,64 +1,77 @@
-<br> {{!-- Add new product --}}
+<br>
 <div class="container">
-<div class="card">
-    <div class="card-header">
-        <h3 class="card-title">Add Service
-        </h3>
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Add Service
+            </h3>
+        </div>
+        <!-- penel-heading -->
+        <div class="card-block">
+            <form class="form-group" action="/admin/services/{{editservice.id}}?_method=PUT" method="POST" enctype="multipart/form-data">
+                <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="">Name</label>
+                                <input type="text" class="form-control" name="name" placeholder="Name" value="{{editservice.name}}" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="">Duration</label>
+                                <input type="text" class="form-control" name="duration" placeholder="Duration" value="{{editservice.duration}}">
+                            </div>
+                            <div class="form-group">
+                                <label for="">Member Price</label>
+                                <input type="text" class="form-control" name="member_price" placeholder="x.xx" value="{{editservice.member_price}}">
+                            </div>
+                            <div class="form-group">
+                                <label for="">Non Member Price</label>
+                                <input type="text" class="form-control" name="nonmember_price" placeholder="x.xx" value="{{editservice.nonmember_price}}">
+                            </div>
+                            <div class="form-group">
+                                <label for="">Cost</label>
+                                <input type="text" class="form-control" name="cost" placeholder="Cost" value="{{editservice.cost}}" required>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="">Current Photo</label>
+                                <img id="preview" class="img-thumbnail" src="/assets/images/serviceUpload/{{editservice.photo}}" alt="PLEASE UPLOAD IMAGE">
+                            </div>
+                            <div class="form-group">
+                                <label for="">Change Photo</label>
+                                <input type="file" class="form-control" onChange="previewImage(this)" name="photo" placeholder="Photo">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label for="">Comment</label>
+                                <textarea class="form-control" name="comment" placeholder="Comment" row="50" style="height:25em">{{editservice.comment}}</textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Update Service</button>
+                    <a href="/admin/services">
+                        <button type="button" class="btn btn-info">Cancel</button>
+                    </a>
+                </div>{{!-- container --}}
+            </form>
+        </div>
+        <!-- card-block -->
     </div>
-    <!-- penel-heading -->
-    <div class="card-block">
-        <form class="form-group" action="/admin/services/{{editservice.id}}?_method=PUT" method="POST">
-            <div class="container">
-                <div class="row">
-                    <div class="col">
-                        <div class="form-group">
-                            <label for="">Name</label>
-                            <input type="text" class="form-control" name="name" placeholder="Name" value="{{editservice.name}}" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="">Duration</label>
-                            <input type="text" class="form-control" name="duration" placeholder="Duration"value="{{editservice.duration}}">
-                        </div>
-                        <div class="form-group">
-                            <label for="">Member Price</label>
-                            <input type="text" class="form-control" name="member_price" placeholder="x.xx" value="{{editservice.member_price}}">
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="form-group">
-                            <label for="">Non Member Price</label>
-                            <input type="text" class="form-control" name="nonmember_price" placeholder="x.xx" value="{{editservice.nonmember_price}}">
-                        </div>
-                        <div class="form-group">
-                            <label for="">Cost</label>
-                            <input type="text" class="form-control" name="cost" placeholder="Cost" value="{{editservice.cost}}" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="">Photo</label>
-                            <input type="text" class="form-control" name="photo" placeholder="Photo" value="{{editservice.photo}}">
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="form-group">
-                            <label for="">Comment</label>
-                            <textarea class="form-control" name="comment" placeholder="Comment" row="50" style="height:20em">{{editservice.comment}}"</textarea>
-                        </div>
-                    </div>
-                </div>
-                <button type="submit" class="btn btn-primary">Update Service</button>
-                <a href="/admin/services">
-                    <button type="button" class="btn btn-info">Cancel</button>
-                </a>
-            </div>{{!-- container --}}
-        </form>
-    </div>
-    <!-- card-block -->
-</div>
-<!-- second card -->
+    <!-- second card -->
 </div>
 <script type="text/javascript">
-    $(document).ready(function() {
+    $(document).ready(function () {
         $("#admin-ul").show();
         $("#public-ul").hide();
     });
+    function previewImage(image) {
+        if (image.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $("#preview").attr("src", e.target.result);
+            }
+        }
+        reader.readAsDataURL(image.files[0]);
+    }
 </script>

@@ -6,7 +6,7 @@
         </div>
         <!-- penel-heading -->
         <div class="card-block">
-            <form class="form-group" action="/admin/products/{{editproduct.id}}?_method=PUT" method="POST">
+            <form class="form-group" action="/admin/products/{{editproduct.id}}?_method=PUT" method="POST" enctype="multipart/form-data">
                 <div class="container">
                     <div class="row">
                         <div class="col">
@@ -26,27 +26,28 @@
                                 <label for="">Price</label>
                                 <input type="text" class="form-control" name="price" placeholder="price" value="{{editproduct.price}}">
                             </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group">
-                                <label for="">Stock Quantity</label>
-                                <input type="text" class="form-control" name="stock_quantity" placeholder="stock_quantity" value="{{editproduct.stock_quantity}}">
-
-                            </div>
                             <div class="form-group">
                                 <label for="">Cost</label>
 
                                 <input type="text" class="form-control" name="cost" placeholder="cost" value="{{editproduct.cost}}">
                             </div>
                             <div class="form-group">
+                                <label for="">Stock Quantity</label>
+                                <input type="text" class="form-control" name="stock_quantity" placeholder="stock_quantity" value="{{editproduct.stock_quantity}}">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
                                 <label for="">Vendor</label>
                                 <input type="text" class="form-control" name="vendor" placeholder="vendor" value="{{editproduct.vendor}}">
-
                             </div>
                             <div class="form-group">
-                                <label for="">Photo</label>
-                                <input type="text" class="form-control" name="photo" placeholder="photo" value="{{editproduct.photo}}">
-
+                                <label for="">Current Photo</label>
+                                <img id="preview" class="img-thumbnail" src="/assets/images/productUpload/{{editproduct.photo}}" alt="PLEASE UPLOAD IMAGE">
+                            </div>
+                            <div class="form-group">
+                                <label for="">Change Photo</label>
+                                <input type="file" class="form-control" name="photo" onChange="previewImage(this)" placeholder="Photo">
                             </div>
                         </div>
                         <div class="col">
@@ -72,4 +73,13 @@
         $("#admin-ul").show();
         $("#public-ul").hide();
     });
+    function previewImage(image) {
+        if (image.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $("#preview").attr("src", e.target.result);
+            }
+        }
+        reader.readAsDataURL(image.files[0]);
+    }
 </script>
