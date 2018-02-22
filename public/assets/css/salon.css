@@ -1,25 +1,15 @@
 body, html {
-    height: 100%;
-    margin-top: 45px;
+    margin: 0;
+    padding: 0;
 }
 
-.full-content {
+.page-content {
     min-width: 100%;
-    min-height: 100%;
+    min-height: 1000px;
     width: 100%;
-    height: 100%;
-    background: url('../images/backgrounds/brushed_alu_bg/brushed_alu_dark_@2X.png') repeat; 
-    /*background-size: 100%;*/
-    /* margin-top: 90px; */
-}
-
-.products-content {
-    /*top: 0;*/
-    min-width: 100%;
-    min-height: 100%;
-    width: 100%;
-    height: 100%;
-    background: url('../images/backgrounds/brushed_alu_bg/brushed_alu_dark_@2X.png') repeat; 
+    height: 1000px;
+    background: url('../images/backgrounds/brushed_alu_bg/brushed_alu_dark_@2X.png') repeat;
+    padding-top:90px;
     /*background-size: 100%;*/
 }
 
@@ -28,39 +18,13 @@ body, html {
     /*background-size: 100%;*/
 }
 
-.aboutus-content {
-    /*top: 0;*/
-    min-width: 100%;
-    min-height: 100%;
-    width: 100%;
-    height: 100%;
-    background: url('../images/backgrounds/brushed_alu_bg/brushed_alu_dark_@2X.png') repeat; 
-    /*background-size: 100%;*/
+#additional-staff {
+    text-align: center;
 }
 
-
-.services-content {
-    /*top: 0;*/
-    min-width: 100%;
-    min-height: 100%;
-    /*width: 80%;*/
-    height: 100%;
-    background: url('../images/backgrounds/brushed_alu_bg/brushed_alu_dark_@2X.png') repeat; 
-    /*background-size: 100%;*/
-    margin: 0 auto;
-    /*padding: 20px*/
+.table td, .table th {
+    padding: .20rem;
 }
-
-.contact-content {
-    /*top: 0;*/
-    min-width: 100%;
-    min-height: 100%;
-    width: 100%;
-    height: 100%;
-    background: url('../images/backgrounds/brushed_alu_bg/brushed_alu_dark_@2X.png') repeat; 
-    /*background-size: 100%;*/
-}
-
 .fc-mouseover {
     -moz-filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale");
     -o-filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale");
@@ -90,6 +54,7 @@ body, html {
 .profile-pic {
     border-radius: 100px;
     border: 4px solid gray;
+    height: 135px;
 }
 
 .service-pic {
@@ -130,11 +95,11 @@ body, html {
 
 .prod-row {
     /* margin: 0 1rem 0 1rem; */
-    padding: 1rem 0 1rem 0;
+    padding: 0.2rem 0 0.2rem 0;
 }
 
 #ProductBrandsDiv {
-    padding-top: 10rem;    
+    padding-top: 5rem;    
 }
 
 .odds {

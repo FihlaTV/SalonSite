@@ -64,6 +64,30 @@ router.post("/leads", (req, res) => {
   });
 });
 
+// Index page
+router.get("/", (req, res) => {
+  let fullData = [];
+
+  db.Service.findAll().then(serviceData => {
+    //res.render("services", { services: serviceData });
+    fullData.push(serviceData);
+  });
+
+  db.Brand.findAll({
+    attributes:["name", "description", "photo", "id"]
+  }).then(productData =>{
+    //res.render("products", { productBrands: data });
+    fullData.push(productData);
+
+    res.render("index", { services: fullData[0], productBrands: fullData[1] });
+    //res.render("index", { index: fullData });
+  });
+
+  //console.log("Full Data 5: ", fullData);
+  //// Original render
+  //res.render("index", { data: fullData });
+});
+
 //show product brand on the product page
 router.get("/products999", (req, res) => {
   db.Product.findAll({
@@ -111,14 +135,10 @@ router.get("/staff", (req, res)=>{
   });
 });
 
-router.get("/", (req, res) => {
-  res.render("index", { data: "hello" });
-});
-
 //show services
 router.get("/services", (req, res) => {
   db.Service.findAll().then(data => {
-    // console.log(data);
+    console.log("Services Page Data: ", data);
     res.render("services", { services: data });
   })
 });
