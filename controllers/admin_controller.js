@@ -46,7 +46,6 @@ router.post("/products/new", upload.single("photo"), (req, res) => {
 
 //edit product - show update product
 router.get("/products/:id/edit", (req, res) => {
-    //console.log(req.params.id)
     db.Product.findOne({
         where: {
             id: req.params.id
@@ -88,7 +87,6 @@ router.get("/services", (req, res) => {
     db.Service.findAll({
         order: [["name", "ASC"]]
     }).then(data => {
-        //console.log(data);
         res.render("adminservices", { services: data });
     });
 });
@@ -102,7 +100,6 @@ storage = multer.diskStorage({
 });
 upload = multer({ storage: storage });
 router.post("/services/new", upload.single("photo"), (req, res) => {
-    // console.log(req.body)
     db.Service.create(
         {
             name: req.body.name,
@@ -114,20 +111,17 @@ router.post("/services/new", upload.single("photo"), (req, res) => {
             comment: req.body.comment,
         }
     ).then(data => {
-        //console.log(data);
         res.redirect("/admin/services")
     });
 });
 
 //edit service - show update service
 router.get("/services/:id/edit", (req, res) => {
-    //console.log(req.params.id)
     db.Service.findOne({
         where: {
             id: req.params.id
         }
     }).then(data => {
-        //console.log(data);
         res.render("adminServicesEdit", { editservice: data })
     });
 });
@@ -139,7 +133,6 @@ router.put("/services/:id", upload.single("photo"), (req, res) => {
             id: req.params.id
         }
     }).then(data => {
-        //console.log(data);
         res.redirect("/admin/services")
     })
 });
@@ -157,7 +150,6 @@ router.delete("/services/:id/:name", (req, res) => {
             id: req.params.id
         }
     }).then(data => {
-        //console.log(data);
         res.redirect("/admin/services")
     });
 });
@@ -169,11 +161,8 @@ router.get("/salon/edit", (req, res) => {
         where: {
             name: SALON_NAME
         },
-        include: [db.Address
-            , db.Email, db.Phone
-        ]
+        include: [db.Address, db.Email, db.Phone]
     }).then(data => {
-        //console.log(data)
         res.render("adminSalonEdit", { editSalon: data })
     });
 });
@@ -222,11 +211,8 @@ router.put("/salon/update", (req, res) => {
 router.get("/staff", (req, res) => {
     db.Staff.findAll({
         order: [["name", "ASC"]],
-        include: [db.Address
-            , db.Email, db.Phone
-        ]
+        include: [db.Address, db.Email, db.Phone]
     }).then(data => {
-        // console.log(data)
         res.render("adminStaff", { staff: data });
     });
 });
@@ -238,7 +224,9 @@ storage = multer.diskStorage({
         cb(null, req.body.name + ".png");
     }
 });
+
 upload = multer({ storage: storage });
+
 router.post("/staff/new", upload.single("photo"), (req, res) => {
     var emailId;
     var addressId;
@@ -266,9 +254,7 @@ router.post("/staff/new", upload.single("photo"), (req, res) => {
         });
     }).then((newPhone) => {
         phoneId = newPhone.id;
-        // console.log('adding new customer', 'email:', emailId,
-        //     'address:', addressId,
-        //     'phone:', phoneId)
+
         return db.Staff.create({
             name: req.body.name,
             lastname: req.body.lastname,
@@ -284,14 +270,10 @@ router.post("/staff/new", upload.single("photo"), (req, res) => {
             AddressId: addressId,
             PhoneId: phoneId
         }, {
-                include: [db.Address
-                    , db.Email, db.Phone
-                ]
+                include: [db.Address, db.Email, db.Phone]
             });
     }).then(data => {
         res.redirect("/admin/staff")
-        // console.log(data);
-        // res.json(data)
     }).catch((error) => {
         res.json(error);
     });
@@ -299,14 +281,11 @@ router.post("/staff/new", upload.single("photo"), (req, res) => {
 
 //edit staff - show update product
 router.get("/staff/:id/edit", (req, res) => {
-    //console.log(req.params.id)
     db.Staff.findOne({
         where: {
             id: req.params.id
         },
-        include: [db.Address
-            , db.Email, db.Phone
-        ]
+        include: [db.Address, db.Email, db.Phone]
     }).then(data => {
         res.render("adminStaffEdit", { editStaff: data })
     });
@@ -378,11 +357,8 @@ router.delete("/staff/:id/:name", (req, res) => {
 router.get("/customers", (req, res) => {
     db.Customer.findAll({
         order: [["name", "ASC"]],
-        include: [db.Address
-            , db.Email, db.Phone
-        ]
+        include: [db.Address, db.Email, db.Phone]
     }).then(data => {
-        // console.log(data)
         res.render("adminCustomers", { customers: data });
     });
 });
@@ -416,9 +392,6 @@ router.post("/customers/new", (req, res) => {
     }).then((newPhone) => {
         phoneId = newPhone.id;
 
-        // console.log('adding new customer', 'email:', emailId,
-        //     'address:', addressId,
-        //     'phone:', phoneId)
         return db.Customer.create({
             name: req.body.name,
             lastname: req.body.lastname,
@@ -432,14 +405,10 @@ router.post("/customers/new", (req, res) => {
             AddressId: addressId,
             PhoneId: phoneId
         }, {
-                include: [db.Address
-                    , db.Email, db.Phone
-                ]
+                include: [db.Address, db.Email, db.Phone]
             });
     }).then(data => {
         res.redirect("/admin/customers")
-        // console.log(data);
-        // res.json(data)
     }).catch((error) => {
         res.json(error);
     });
@@ -447,14 +416,11 @@ router.post("/customers/new", (req, res) => {
 
 //edit customers - show update product
 router.get("/customers/:id/edit", (req, res) => {
-    //console.log(req.params.id)
     db.Customer.findOne({
         where: {
             id: req.params.id
         },
-        include: [db.Address
-            , db.Email, db.Phone
-        ]
+        include: [db.Address, db.Email, db.Phone]
     }).then(data => {
         res.render("adminCustomersEdit", { editCustomer: data })
     });
@@ -505,7 +471,6 @@ router.put("/customers/:id", (req, res) => {
 
 //delete staff in database
 router.delete("/customers/:id", (req, res) => {
-    // console.log(req.params.id);
     db.Customer.destroy({
         where: {
             id: req.params.id
@@ -518,39 +483,28 @@ router.delete("/customers/:id", (req, res) => {
 router.get("/staffservice", (req, res) => {
     var data;
     db.Staff.findAll().then(allStaff => {
-        // console.log(allStaff);
         db.Service.findAll().then(allServices => {
-            // console.log(allServices)
             data = {
                 aStaff: allStaff,
                 aServices: allServices
             }
-            // console.log(data.aStaff[0].dataValues.name)
-            // console.log(data.aServices[0].dataValues.name)
-            console.log(data.aStaff)
-            console.log("::::::::::::::::")
-            console.log(data.aServices)
         });
+
         res.render("adminStaffService", { data: data })
     });
 });
 
 //// show all membership
 router.get("/membership", (req, res) => {
-    console.log(req.body)
     db.Membership.findAll({
         order: [["title", "ASC"]]
     }).then(data => {
-        // console.log(data)
         res.render("adminMembership", { membership: data });
     });
 });
 
 //add membership in database
 router.post("/membership/new", (req, res) => {
-    // console.log('before', req.body.description)
-    // var description = "<pre>" + req.body.description + "</pre>"
-    // console.log('after', req.body.description)
     db.Membership.create(
         {
             title: req.body.title,
@@ -564,7 +518,6 @@ router.post("/membership/new", (req, res) => {
 
 //edit membership - show update membership
 router.get("/membership/:id/edit", (req, res) => {
-    console.log(req.params.id)
     db.Membership.findOne({
         where: {
             id: req.params.id
@@ -582,13 +535,11 @@ router.put("/membership/:id", (req, res) => {
         }
     }).then(data => {
         res.redirect("/admin/membership")
-    }
-    )
+    })
 });
 
 //delete membership in database
 router.delete("/membership/:id", (req, res) => {
-    // console.log(req.params.id);
     db.Membership.destroy({
         where: {
             id: req.params.id

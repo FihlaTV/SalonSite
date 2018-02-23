@@ -13,5 +13,6 @@ module.exports = function (sequelize, DataTypes) {
             allowNULL: true
         }
     });
+    
     return Membership;
 }

@@ -10,12 +10,10 @@ body, html {
     height: 1000px;
     background: url('../images/backgrounds/brushed_alu_bg/brushed_alu_dark_@2X.png') repeat;
     padding-top:90px;
-    /*background-size: 100%;*/
 }
 
 .container {
     background: url('../images/backgrounds/brushed_alu_bg/brushed_alu_dark_@2X.png') repeat; 
-    /*background-size: 100%;*/
 }
 
 #additional-staff {
@@ -94,7 +92,6 @@ body, html {
 }
 
 .prod-row {
-    /* margin: 0 1rem 0 1rem; */
     padding: 0.2rem 0 0.2rem 0;
 }
 
@@ -144,10 +141,7 @@ footer {
 }
 
 .salon-box {
-    /*color: #000;
-    background-color: rgba(192, 192, 192, 0.5);*/
     font-weight: bold;
-    /* margin-left: 15px; */
 }
 
 #map, #pano {
@@ -158,8 +152,7 @@ footer {
 }
 
 .contact-box {
-    /*background-color: rgba(192, 192, 192, 0.5);*/
-    /* margin-left: 15px; */
+    background-color: inherit;
 }
 
 .map-div {
@@ -183,4 +176,8 @@ ul .admin-ul {
 }
 .noUnderline {
     text-decoration: none !important;
+}
+
+.company-branding-image {
+    padding-left: 7rem !important;
 }

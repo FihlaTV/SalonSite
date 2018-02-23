@@ -5,6 +5,7 @@ var db = require("../models");
 router.get("/", (req, res) => {
     res.render("index", { data: "hello" });
 });
+
 //create customer
 router.post("/new", (req, res) => {
     var emailId;
@@ -23,7 +24,6 @@ router.post("/new", (req, res) => {
             state: "req.body.state",
             zip:req.body.zip
         });
-
     }).then((newAddress) => {
         addressId = newAddress.id;
 
@@ -34,9 +34,6 @@ router.post("/new", (req, res) => {
     }).then((newPhone) => {
         phoneId = newPhone.id;
 
-        // console.log('adding new customer', 'email:', emailId,
-        // 'address:', addressId,
-        // 'phone:', phoneId)
         return db.Customer.create({
             name: req.body.name,
             lastname: req.body.lastname,
@@ -49,11 +46,11 @@ router.post("/new", (req, res) => {
             EmailId: emailId,
             AddressId: addressId,
             PhoneId: phoneId
-        }, {
-                include: [db.Address, db.Email, db.Phone]
-            });
+        }, 
+        {
+            include: [db.Address, db.Email, db.Phone]
+        });
     }).then(data => {
-        //console.log(data);
         res.json(data)
     }).catch((error) => {
         res.json(error);

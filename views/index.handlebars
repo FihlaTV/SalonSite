@@ -8,11 +8,10 @@
     <div class="container">
         <div class="row">
             <img src="/assets/images/RoseGoldAboutUs.png" alt="aboutus">
-            <!-- <h1 class="display-3 about-us">About Us!</h1> -->
             <p>Marianne Rimawi, formerly of Moi Salon, and Christopher Rey of Christopher Rey Salon, have joined forces to create a new, dynamic space together at Blvd 6 Salon!
-            We at Blvd 6 Salon want to make a positive and lasting impression while bringing you the highest quality in hair services, professional products, and individual attention.
-        By demonstrating healthy hair habits and setting achievable hair goals with the most professional hair care products, clients are well equipped to maintain long-lasting, lustrous locks at home.
-    In addition, we're very proud to be a Green Circle Salon, participating in the most environmentally friendly salon practices in the world.  After all, impressions matter and we at Blvd 6 Salon strive to leave a lasting footprint that's positively beautiful.</p>
+                We at Blvd 6 Salon want to make a positive and lasting impression while bringing you the highest quality in hair services, professional products, and individual attention.
+                By demonstrating healthy hair habits and setting achievable hair goals with the most professional hair care products, clients are well equipped to maintain long-lasting, lustrous locks at home.
+                In addition, we're very proud to be a Green Circle Salon, participating in the most environmentally friendly salon practices in the world.  After all, impressions matter and we at Blvd 6 Salon strive to leave a lasting footprint that's positively beautiful.</p>
             <!-- Example row of columns -->
         </div>
         <div class="row">
@@ -29,11 +28,9 @@
                 <p>Living outside of the Valley, as a West Hollywood resident, Rey has a passion for personal fitness and good food.  He enjoys being a part of adrenaline pumping activities and participates in marathons and triathalons.</p>
             </div>
         </div>
-        <!-- <div class="row"> -->
-            <h2 id="additional-staff" class="text-center">
-                Additional Staff
-            </h2>
-        <!-- </div> -->
+        <h2 id="additional-staff" class="text-center">
+            Additional Staff
+        </h2>
         <div class="row text-center">
             <div class="col-md-6">
                 <h4>
@@ -79,7 +76,6 @@
     <div id="ProductBrandsDiv" class="row text-center">
         {{#each productBrands}}
         <div class="col-lg-6 prod-row">
-            {{!-- <button type="button" id="btnSubmit" onclick="sayHelloToMyLittleFriend('{{name}}');" data-toggle="modal" data-target=".bd-example-modal-sm-{{name}}" aria-hidden="true" data-value="{{name}}">{{name}}</button> --}}
             <img data-toggle="modal" data-target=".bd-example-modal-lg-{{id}}" aria-hidden="true" src="{{photo}}" alt="{{name}}"
             data-value="{{name}}" class="brand-pic" onclick="sayHelloToMyLittleFriend('{{name}}');">
         </div>
@@ -98,7 +94,7 @@
     <img src="/assets/images/RoseGoldContactUs.png" alt="contact us">
     <div class="row">
         <div class="col-xs-12 col-sm-6 col-md-12 col-lg-12 salon-box">
-            <h2>{{contactus.dataValues.name}}</h2>
+            <h2>{{contactus.name}}</h2>
             <span>{{contactus.Address.dataValues.address1}}</span><br />
             <span>{{contactus.Address.dataValues.address2}}</span><br />
             <span>{{contactus.Address.dataValues.city}}, </span>
@@ -142,116 +138,99 @@
                         <textarea id="addlContact" name="addlContact" class="form-control" rows="8" placeholder="Tell us more..."></textarea>   
                     </div>
                     <button type="submit" id="submitContact" class="btn btn-default">Submit</button>
-                </form> 
-            </div>
+                </div>
+            </form> 
         </div>
-        <!--<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 map-div"><div id="pano"></div></div>-->
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 map-div"><div id="map"></div></div>
     </div>
-    <!-- End of Page 5 -->
+        <!--<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 map-div"><div id="pano"></div></div>-->
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 map-div">
+        <div id="map"></div>
+    </div>
+</div>
+<!-- End of Page 5 -->
+<!-- Start of Page 6 - Appointments -->
+<div data-full="true" id="AppointmentsDiv" class="container page-content">
+    <div class="row">
+        <img src="/assets/images/RoseGoldAppointments.png" alt="contact us">
+        <!-- Start Square Appointments Embed Code -->
+        <script src='https://squareup.com/appointments/buyer/widget/1468bcf9-3336-493f-b871-912f79d48e19/FE3T7G4WT90MA.js'></script>
+        <!-- End Square Appointments EmbedCode -->
+    </div>
+</div>    	
+<!-- End of Page 6 - Appointments -->
+<script>
+    $(document).ready(function () {
+        // For page 1
+        setInterval(changeService, 3000);
 
-    <script>
-        $(document).ready(function () {
-            // For page 1
-            setInterval(changeService, 3000);
+        $("#admin-ul").hide();
+        $("#public-ul").show();
 
-            // $("#iHome").addClass("active");
-
-            $("#admin-ul").hide();
-            $("#public-ul").show();
-
-            // // For page 2
-            // $("#iAbout").addClass("active");
-
-            // // For page 3
-            // $("#iServices").addClass("active");
-
-            // $("#admin-ul").hide();
-            // $("#public-ul").show();
-
-            // // For page 4
-            // $("#iProducts").addClass("active");
-
-            // $("#admin-ul").hide();
-            // $("#public-ul").show();
-
-            // // For page 5
-            // $("#iContact").addClass("active");
-
-            // $("#admin-ul").hide();
-            // $("#public-ul").show();
-
-            function getSize() {
-                 
-                // Get the width and height of the window
-                var winHeight = $(window).height();
-                var winWidth = $(window).width();
-                 
-                // Change the divs to that width and height
-                $('[data-full="true"]').css({'width' : winWidth+'px', 'height' : winHeight+'px'});
-                 
-                // An exception for iPods and iPhones
-                if(navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPod/i)) {
-                    $('[data-full="true"]').css({'width' : winWidth+'px', 'height' : winHeight+70+'px'});
-                    $('#home').css({'width' : winWidth+'px', 'height' : winHeight+'px'});
-                }
-                     
-                 
-                // Remove classes
-                // $('#menu a').removeClass('current');
-                // $('#header').removeClass('dark light');
-                 
-                 
-                // Check what page we're on in the document using the height and
-                // scroll postion (That's $(window).scrollTop())
-                 
-                var currentPage = $(window).scrollTop() + 60;
-                 
-                if(currentPage < winHeight) {
-                    // Add correct classes, repeat for different sizes
-                    $('#menu a[href="#home"]').addClass('current');
-                    $('#header').addClass('light');
-                } else if(currentPage > winHeight && currentPage < winHeight*2) {
-                    $('#menu a[href="#about"]').addClass('current');
-                    $('#header').addClass('light');
-                } else if(currentPage > winHeight*2 && currentPage < winHeight*3) {
-                    $('#menu a[href="#services"]').addClass('current');
-                    $('#header').addClass('dark');
-                } else if(currentPage > winHeight*3 && currentPage < winHeight*4) {
-                    $('#menu a[href="#contact"]').addClass('current');
-                    $('#header').addClass('dark');
-         
-                }
+        function getSize() {
+            // Get the width and height of the window
+            const winHeight = $(window).height();
+            const winWidth = $(window).width();
+                
+            // Change the divs to that width and height
+            $('[data-full="true"]').css({'width' : winWidth+'px', 'height' : winHeight+'px'});
+                
+            // An exception for iPods and iPhones
+            if(navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPod/i)) {
+                $('[data-full="true"]').css({'width' : winWidth+'px', 'height' : winHeight+70+'px'});
+                $('#home').css({'width' : winWidth+'px', 'height' : winHeight+'px'});
             }
-        });
+                    
+            // Check what page we're on in the document using the height and
+            // scroll postion (That's $(window).scrollTop())
+            const currentPage = $(window).scrollTop() + 60;
+                
+            if(currentPage < winHeight) {
+                // Add correct classes, repeat for different sizes
+                $('#menu a[href="#home"]').addClass('current');
+                $('#header').addClass('light');
+            } else if(currentPage > winHeight && currentPage < winHeight*2) {
+                $('#menu a[href="#about"]').addClass('current');
+                $('#header').addClass('light');
+            } else if(currentPage > winHeight*2 && currentPage < winHeight*3) {
+                $('#menu a[href="#services"]').addClass('current');
+                $('#header').addClass('dark');
+            } else if(currentPage > winHeight*3 && currentPage < winHeight*4) {
+                $('#menu a[href="#contact"]').addClass('current');
+                $('#header').addClass('dark');
+            } else if(currentPage > winHeight*3 && currentPage < winHeight*4) {
+                $('#menu a[href="#appointments"]').addClass('current');
+                $('#header').addClass('dark');
+            }
+        }
+    });
 
     // For page 1
     let svcImgs = [
-    {
-        index: 0,
-        title: 'Blow Dry!', 
-        url: 'url("../assets/images/blvd6pics/BLVD_6_SPACE-3.jpg")'
-    }, 
-    {
-        index: 1,
-        title: 'Color!',
-        url: 'url("../assets/images/blvd6pics/BLVD_6_SPACE-4.jpg")',
-    },
-    {
-        index: 2,
-        title: 'Men\'s Haircut!',
-        url: 'url("../assets/images/blvd6pics/BLVD_6_SPACE-5.jpg")'
-    }, 
-    {
-        index: 3,
-        title: 'Full Brazilian Blow-Outs!',
-        url: 'url("../assets/images/blvd6pics/BLVD_6_SPACE-9.jpg")'
-    },
-    {
-        index: 4,
-        title: 'Special Occassion Up-Do!',
-        url: 'url("../assets/images/blvd6pics/BLVD_6_SPACE-1.jpg")'
-    }
+        {
+            index: 0,
+            title: 'Blow Dry!', 
+            url: 'url("../assets/images/blvd6pics/BLVD_6_SPACE-3.jpg")'
+        }, 
+        {
+            index: 1,
+            title: 'Color!',
+            url: 'url("../assets/images/blvd6pics/BLVD_6_SPACE-4.jpg")',
+        },
+        {
+            index: 2,
+            title: 'Men\'s Haircut!',
+            url: 'url("../assets/images/blvd6pics/BLVD_6_SPACE-5.jpg")'
+        }, 
+        {
+            index: 3,
+            title: 'Full Brazilian Blow-Outs!',
+            url: 'url("../assets/images/blvd6pics/BLVD_6_SPACE-9.jpg")'
+        },
+        {
+            index: 4,
+            title: 'Special Occassion Up-Do!',
+            url: 'url("../assets/images/blvd6pics/BLVD_6_SPACE-1.jpg")'
+        }
     ];
 
     function changeService() {
@@ -292,15 +271,15 @@
                 }
 
                 divs += `<div class="row prod-row ${idx}">
-                <div class="col-lg-6">
-                <img src="${data.products[index].photo}" alt="${data.products[index].name}" class="product-pic">
-                </div>
-                <div class="col-lg-6">
-                <strong>Name: </strong>${data.products[index].name}<br />
-                <strong>Price: </strong>$${data.products[index].price}<br />
-                <strong>Description: </strong>${data.products[index].description}
-                </div>
-                </div>`;
+                    <div class="col-lg-6">
+                    <img src="${data.products[index].photo}" alt="${data.products[index].name}" class="product-pic">
+                    </div>
+                    <div class="col-lg-6">
+                    <strong>Name: </strong>${data.products[index].name}<br />
+                    <strong>Price: </strong>$${data.products[index].price}<br />
+                    <strong>Description: </strong>${data.products[index].description}
+                    </div>
+                    </div>`;
             });
 
             $(".modal-content").html(divs);

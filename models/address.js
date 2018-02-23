@@ -28,7 +28,6 @@ module.exports = function (sequelize, DataTypes) {
         Address.hasMany(models.Staff, {
             onDelete: "cascade"
         });
-        
     };
 
     return Address;

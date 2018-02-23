@@ -37,9 +37,9 @@ module.exports = function (sequelize, DataTypes) {
         },
         comment: {
             type: DataTypes.STRING,
-
         }
     });
+    
     Staff.associate = (models) => {
         Staff.belongsToMany(models.Service, {
             through: models.Staff_service

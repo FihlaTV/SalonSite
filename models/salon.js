@@ -14,7 +14,8 @@ module.exports = function(sequelize, DataTypes) {
     photo:{
       type:DataTypes.STRING,
       }
-    });
+    }
+  );
 
   Salon.associate =  (models)=> {
     Salon.belongsTo(models.Email, {

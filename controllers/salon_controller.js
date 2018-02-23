@@ -7,39 +7,6 @@ var Tconfig = require('../config/js/config.js');
 var client = new Twilio(Tconfig.accountSid, Tconfig.authToken);
 const SALON_NAME = "Blvd6 Salon";
 
-//display
-router.get("/about", (req, res) => {
-  //show salon info on the about page
-  db.Salon.findOne({
-    where: {
-      name: SALON_NAME
-    },
-    include: [db.Address
-      , db.Email, db.Phone
-    ]
-  }).then(function (data) {
-    // console.log(data);
-
-    res.render("about", { about: data });
-  });
-});
-
-//show contactus
-router.get("/contactus", (req, res) => {
-  db.Salon.findOne({
-    where: {
-      name: SALON_NAME
-    },
-    include: [db.Address
-      , db.Email, db.Phone
-    ]
-  }).then( data=> {
-    //console.log(data);
-
-    res.render("contactus", { contactus: data });
-    });
-});
-
 router.post("/leads", (req, res) => {
   var textString = `You have a new lead -
   Name: ${req.body.firstNameContact}
@@ -54,8 +21,6 @@ router.post("/leads", (req, res) => {
       body: textString
   })
   .then(() => {
-      // Otherwise, respond with 200 OK
-      //res.status(200).send('Lead notification was successfully sent.');
       res.redirect("/contactus");
   })
   .catch((err) => {
@@ -69,23 +34,25 @@ router.get("/", (req, res) => {
   let fullData = [];
 
   db.Service.findAll().then(serviceData => {
-    //res.render("services", { services: serviceData });
     fullData.push(serviceData);
+  });
+
+  db.Salon.findOne({
+    where: {
+      name: SALON_NAME
+    },
+    include: [db.Address, db.Email, db.Phone]
+  }).then(contactData => {
+    fullData.push(contactData);
   });
 
   db.Brand.findAll({
     attributes:["name", "description", "photo", "id"]
-  }).then(productData =>{
-    //res.render("products", { productBrands: data });
+  }).then(productData => {
     fullData.push(productData);
 
-    res.render("index", { services: fullData[0], productBrands: fullData[1] });
-    //res.render("index", { index: fullData });
+    res.render("index", { services: fullData[0], contactus: fullData[1], productBrands: fullData[2] });
   });
-
-  //console.log("Full Data 5: ", fullData);
-  //// Original render
-  //res.render("index", { data: fullData });
 });
 
 //show product brand on the product page
@@ -94,10 +61,8 @@ router.get("/products999", (req, res) => {
     attributes:["brand","photo", "id"],
     group:"brand"
   }).then(data =>{
-    //console.log("Damn data:", data);
     res.render("products", { productBrands: data });
   });
-
 });
 
 // show products in the brand
@@ -107,9 +72,7 @@ router.get("/products/:brand", (req, res)=>{
       brand:req.params.brand
     } 
   }).then(data =>{
-    //console.log("data2: ", data)
     res.json({products: data});
-    //res.render("products", {products: data});
   });
 });
 
@@ -118,7 +81,6 @@ router.get("/products", (req, res) => {
   db.Brand.findAll({
     attributes:["name", "description", "photo", "id"]
   }).then(data =>{
-    console.log("data2: ", data)
     res.render("products", { productBrands: data });
   });
 });
@@ -130,57 +92,8 @@ router.get("/staff", (req, res)=>{
       , db.Email, db.Phone
     ]
   }).then(data=>{
-    console.log("Dirty Data: ", data);
     res.render("staff", {staff:data});
   });
 });
-
-//show services
-router.get("/services", (req, res) => {
-  db.Service.findAll().then(data => {
-    console.log("Services Page Data: ", data);
-    res.render("services", { services: data });
-  })
-});
-//staff_service
-//to show what kind of service that each staff perform, will be in the future development
-
-// router.get("/logs", (req, res) => {
-//   db.Staff.findAll({
-//     order: [["name", "ASC"]],
-//   }).then(data => {
-//     // console.log(data);
-//     res.render("adminLog", { staffLogs: data })
-//   });
-// });
-// var staffServiceArr = [];
-// router.get("/logs/:id", (req, res) => {
-//   // console.log("param",req.params.id)
-//   db.Staff_service.findAll({
-//     where: {
-//       StaffId: req.params.id,
-//     }
-//   }).then(data => {
-//     // console.log(data);
-//     for (var i = 0; i < data.length; i++) {
-//       // console.log(data[i].dataValues.ServiceId);
-//       staffServiceArr.push(data[i].dataValues.ServiceId)
-//     }
-//     return staffServiceArr
-//   }).then((staffServiceArr) => {
-//     // console.log("arr",staffServiceArr)
-//     db.Service.findAll({
-//       where: {
-//         id: {
-//           in: staffServiceArr
-//         }
-//       }
-//     }).then(data => {
-//       console.log(data)
-//       staffServiceArr = [];
-//       res.render("adminLog", { staffServiceLogs: data });
-//     })
-//   })
-// });
 
 module.exports = router;
