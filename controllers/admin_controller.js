@@ -1,21 +1,64 @@
-var express = require("express");
-var router = express.Router();
-var db = require("../models");
-var multer = require("multer");
-var fs = require("fs");
+let express = require("express");
+let router = express.Router();
+let db = require("../models");
+let multer = require("multer");
+let fs = require("fs");
+let passport = require("passport");
 const SALON_NAME = "Blvd6 Salon";
 
+// Simple route middleware to ensure user is authenticated.
+function ensureAuthenticated(req, res, next) {
+    if (req.isAuthenticated()) { 
+        return next(); 
+    }
+
+    req.session.error = 'Please sign in!';
+    res.redirect('/admin/signin');
+}
+  
 router.get("/", (req, res) => {
-    res.render("adminIndex");
+    // res.render("adminIndex");
+    res.render("home", { user: req.user });
+});
+
+router.get("/signin", function(req, res) {
+    res.render("signin");
 });
 
 // show all product
-router.get("/products", (req, res) => {
+router.get("/products", ensureAuthenticated, (req, res) => {
     db.Product.findAll({
         order: [["brand", "ASC"]]
     }).then(data => {
         res.render("adminProducts", { products: data });
     });
+});
+
+//sends the request through our local signup strategy, and if successful takes user to homepage, otherwise returns then to signin page
+router.post('/local-reg', 
+    passport.authenticate('local-signup', {
+        successRedirect: '/admin',
+        failureRedirect: '/admin/signin'
+    })
+);
+
+//sends the request through our local login/signin strategy, and if successful, takes the user to the homepage.  Otherwise returns them to the sign-in page
+router.post('/login', 
+    passport.authenticate('local-signin', {
+        successRedirect: '/admin',
+        failureRedirect: '/admin/signin'
+    })
+);
+
+//logs user out of site, deleting them from the session, and returns to homepage
+router.get('/logout', function(req, res){
+    var name = req.user.username;
+
+    console.log("LOGGING OUT " + req.user.username)
+
+    req.logout();
+    res.redirect('/admin');
+    req.session.notice = "You have successfully been logged out " + name + "!";
 });
 
 //add product in database
@@ -25,8 +68,10 @@ var storage = multer.diskStorage({
         cb(null, req.body.name + ".png");
     }
 });
+
 var upload = multer({ storage: storage });
-router.post("/products/new", upload.single("photo"), (req, res) => {
+
+router.post("/products/new", ensureAuthenticated, upload.single("photo"), (req, res) => {
     db.Product.create(
         {
             brand: req.body.brand,
@@ -45,7 +90,7 @@ router.post("/products/new", upload.single("photo"), (req, res) => {
 });
 
 //edit product - show update product
-router.get("/products/:id/edit", (req, res) => {
+router.get("/products/:id/edit", ensureAuthenticated, (req, res) => {
     db.Product.findOne({
         where: {
             id: req.params.id
@@ -56,7 +101,7 @@ router.get("/products/:id/edit", (req, res) => {
 });
 
 //update - update database
-router.put("/products/:id", upload.single("photo"), (req, res) => {
+router.put("/products/:id", ensureAuthenticated, upload.single("photo"), (req, res) => {
     db.Product.update(req.body, {
         where: {
             id: req.params.id
@@ -67,12 +112,14 @@ router.put("/products/:id", upload.single("photo"), (req, res) => {
 });
 
 //delete product in database
-router.delete("/products/:id/:name", (req, res) => {
+router.delete("/products/:id/:name", ensureAuthenticated, (req, res) => {
     //Check if file exist and delete
     var filePath = "./public/assets/images/productUpload/" + req.params.name + ".png";
+
     if(fs.existsSync(filePath)){
         fs.unlinkSync(filePath);
     }
+
     db.Product.destroy({
         where: {
             id: req.params.id
@@ -83,7 +130,7 @@ router.delete("/products/:id/:name", (req, res) => {
 });
 
 //service
-router.get("/services", (req, res) => {
+router.get("/services", ensureAuthenticated, (req, res) => {
     db.Service.findAll({
         order: [["name", "ASC"]]
     }).then(data => {
@@ -98,8 +145,10 @@ storage = multer.diskStorage({
         cb(null, req.body.name + ".png");
     }
 });
+
 upload = multer({ storage: storage });
-router.post("/services/new", upload.single("photo"), (req, res) => {
+
+router.post("/services/new", ensureAuthenticated, upload.single("photo"), (req, res) => {
     db.Service.create(
         {
             name: req.body.name,
@@ -116,7 +165,7 @@ router.post("/services/new", upload.single("photo"), (req, res) => {
 });
 
 //edit service - show update service
-router.get("/services/:id/edit", (req, res) => {
+router.get("/services/:id/edit", ensureAuthenticated, (req, res) => {
     db.Service.findOne({
         where: {
             id: req.params.id
@@ -127,7 +176,7 @@ router.get("/services/:id/edit", (req, res) => {
 });
 
 //update - update database
-router.put("/services/:id", upload.single("photo"), (req, res) => {
+router.put("/services/:id", ensureAuthenticated, upload.single("photo"), (req, res) => {
     db.Service.update(req.body, {
         where: {
             id: req.params.id
@@ -138,12 +187,13 @@ router.put("/services/:id", upload.single("photo"), (req, res) => {
 });
 
 //delete service in database
-router.delete("/services/:id/:name", (req, res) => {
+router.delete("/services/:id/:name", ensureAuthenticated, (req, res) => {
     //Check if file exist and delete
     var filePath = "./public/assets/images/serviceUpload/" + req.params.name + ".png";
-        if (fs.existsSync(filePath)) {
-            fs.unlinkSync(filePath);
-        }
+
+    if (fs.existsSync(filePath)) {
+        fs.unlinkSync(filePath);
+    }
    
     db.Service.destroy({
         where: {
@@ -156,7 +206,7 @@ router.delete("/services/:id/:name", (req, res) => {
 
 //saloninfo
 //edit
-router.get("/salon/edit", (req, res) => {
+router.get("/salon/edit", ensureAuthenticated, (req, res) => {
     db.Salon.findOne({
         where: {
             name: SALON_NAME
@@ -168,7 +218,7 @@ router.get("/salon/edit", (req, res) => {
 });
 
 //update - update database
-router.put("/salon/update", (req, res) => {
+router.put("/salon/update", ensureAuthenticated, (req, res) => {
     db.Email.update({
         email: req.body.email
     }, {
@@ -208,7 +258,7 @@ router.put("/salon/update", (req, res) => {
 
 //manage staff
 // show all staff
-router.get("/staff", (req, res) => {
+router.get("/staff", ensureAuthenticated, (req, res) => {
     db.Staff.findAll({
         order: [["name", "ASC"]],
         include: [db.Address, db.Email, db.Phone]
@@ -227,7 +277,7 @@ storage = multer.diskStorage({
 
 upload = multer({ storage: storage });
 
-router.post("/staff/new", upload.single("photo"), (req, res) => {
+router.post("/staff/new", ensureAuthenticated, upload.single("photo"), (req, res) => {
     var emailId;
     var addressId;
     var phoneId;
@@ -255,23 +305,26 @@ router.post("/staff/new", upload.single("photo"), (req, res) => {
     }).then((newPhone) => {
         phoneId = newPhone.id;
 
-        return db.Staff.create({
-            name: req.body.name,
-            lastname: req.body.lastname,
-            bio: req.body.bio,
-            station: req.body.station,
-            day: req.body.day,
-            hour: req.body.hour,
-            emergency_contact_name: req.body.emergency_contact_name,
-            emergency_contact_phone: req.body.emergency_contact_phone,
-            photo: req.body.name + ".png",
-            comment: req.body.comment,
-            EmailId: emailId,
-            AddressId: addressId,
-            PhoneId: phoneId
-        }, {
+        return db.Staff.create(
+            {
+                name: req.body.name,
+                lastname: req.body.lastname,
+                bio: req.body.bio,
+                station: req.body.station,
+                day: req.body.day,
+                hour: req.body.hour,
+                emergency_contact_name: req.body.emergency_contact_name,
+                emergency_contact_phone: req.body.emergency_contact_phone,
+                photo: req.body.name + ".png",
+                comment: req.body.comment,
+                EmailId: emailId,
+                AddressId: addressId,
+                PhoneId: phoneId
+            }, 
+            {
                 include: [db.Address, db.Email, db.Phone]
-            });
+            }
+        );
     }).then(data => {
         res.redirect("/admin/staff")
     }).catch((error) => {
@@ -280,9 +333,10 @@ router.post("/staff/new", upload.single("photo"), (req, res) => {
 });
 
 //edit staff - show update product
-router.get("/staff/:id/edit", (req, res) => {
+router.get("/staff/:id/edit", ensureAuthenticated, (req, res) => {
     db.Staff.findOne({
-        where: {
+        where: 
+        {
             id: req.params.id
         },
         include: [db.Address, db.Email, db.Phone]
@@ -292,54 +346,71 @@ router.get("/staff/:id/edit", (req, res) => {
 });
 
 //update - update database
-router.put("/staff/:id", upload.single("photo"), (req, res) => {
-    db.Email.update({
-        email: req.body.email
-    }, {
-            where: {
+router.put("/staff/:id", ensureAuthenticated, upload.single("photo"), (req, res) => {
+    db.Email.update(
+        {
+            email: req.body.email
+        }, 
+        {
+            where: 
+            {
                 id: req.body.emailId
             }
-        }).then(db.Address.update({
+        }
+    ).then(db.Address.update(
+        {
             address1: req.body.address1,
             address2: req.body.address2,
             city: req.body.city,
             state: req.body.state,
             zip: req.body.zip
-        }, {
-                where: {
-                    id: req.body.addressId
-                }
-            })).then(db.Phone.update({
-                mobile: req.body.mobile,
-                home: req.body.home
-            }, {
-                    where: {
-                        id: req.body.phoneId
-                    }
-                })).then(db.Staff.update({
-                    name: req.body.name,
-                    lastname: req.body.lastname,
-                    bio: req.body.bio,
-                    station: req.body.stataion,
-                    day: req.body.day,
-                    hour: req.body.hour,
-                    emergency_contact_name: req.body.emergency_contact_name,
-                    emergency_contact_phone: req.body.emergency_contact_phone,
-                    photo: req.body.name + ".png",
-                    comment: req.body.comment
-                }, {
-                        where: {
-                            id: req.params.id
-                        }
-                    })).then(data => {
-                        res.redirect("/admin/staff");
-                    });
+        }, 
+        {
+            where: 
+            {
+                id: req.body.addressId
+            }
+        }
+    )).then(db.Phone.update(
+        {
+            mobile: req.body.mobile,
+            home: req.body.home
+        }, 
+        {
+            where: 
+            {
+                id: req.body.phoneId
+            }
+        }
+    )).then(db.Staff.update({
+            name: req.body.name,
+            lastname: req.body.lastname,
+            bio: req.body.bio,
+            station: req.body.stataion,
+            day: req.body.day,
+            hour: req.body.hour,
+            emergency_contact_name: req.body.emergency_contact_name,
+            emergency_contact_phone: req.body.emergency_contact_phone,
+            photo: req.body.name + ".png",
+            comment: req.body.comment
+        }, 
+        {
+            where: 
+            {
+                id: req.params.id
+            }
+        })
+    ).then(data => {
+            res.redirect("/admin/staff");
+        }
+    );
 });
 
 //delete staff in database
-router.delete("/staff/:id/:name", (req, res) => {
+router.delete("/staff/:id/:name", ensureAuthenticated, (req, res) => {
     //Check if file exist and delete
     var filePath = "./public/assets/images/staffUpload/" + req.params.name + ".png";
+
     if (fs.existsSync(filePath)) {
         fs.unlinkSync(filePath);
     }
@@ -354,7 +425,7 @@ router.delete("/staff/:id/:name", (req, res) => {
 
 //manage customer
 // show all customer
-router.get("/customers", (req, res) => {
+router.get("/customers", ensureAuthenticated, (req, res) => {
     db.Customer.findAll({
         order: [["name", "ASC"]],
         include: [db.Address, db.Email, db.Phone]
@@ -364,7 +435,7 @@ router.get("/customers", (req, res) => {
 });
 
 //add customer in database
-router.post("/customers/new", (req, res) => {
+router.post("/customers/new", ensureAuthenticated, (req, res) => {
     var emailId;
     var addressId;
     var phoneId;
@@ -415,9 +486,10 @@ router.post("/customers/new", (req, res) => {
 });
 
 //edit customers - show update product
-router.get("/customers/:id/edit", (req, res) => {
+router.get("/customers/:id/edit", ensureAuthenticated, (req, res) => {
     db.Customer.findOne({
-        where: {
+        where: 
+        {
             id: req.params.id
         },
         include: [db.Address, db.Email, db.Phone]
@@ -427,50 +499,65 @@ router.get("/customers/:id/edit", (req, res) => {
 });
 
 //update - update database
-router.put("/customers/:id", (req, res) => {
+router.put("/customers/:id", ensureAuthenticated, (req, res) => {
     db.Email.update({
         email: req.body.email
-    }, {
-            where: {
-                id: req.body.emailId
-            }
-        }).then(db.Address.update({
+    }, 
+    {
+        where: 
+        {
+            id: req.body.emailId
+        }
+    }).then(db.Address.update(
+        {
             address1: req.body.address1,
             address2: req.body.address2,
             city: req.body.city,
             state: req.body.state,
             zip: req.body.zip
-        }, {
-                where: {
-                    id: req.body.addressId
-                }
-            })).then(db.Phone.update({
-                mobile: req.body.mobile,
-                home: req.body.home
-            }, {
-                    where: {
-                        id: req.body.phoneId
-                    }
-                })).then(db.Customer.update({
-                    name: req.body.name,
-                    lastname: req.body.lastname,
-                    password: req.body.password,
-                    gender: req.body.gender,
-                    balance: req.body.balance,
-                    lastvisit: req.body.lastvisit,
-                    photo: req.body.photo,
-                    comment: req.body.comment
-                }, {
-                        where: {
-                            id: req.params.id
-                        }
-                    })).then(data => {
-                        res.redirect("/admin/customers");
-                    });
+        }, 
+        {
+            where: 
+            {
+                id: req.body.addressId
+            }
+        }
+    )).then(db.Phone.update(
+        {
+            mobile: req.body.mobile,
+            home: req.body.home
+        }, 
+        {
+            where: 
+            {
+                id: req.body.phoneId
+            }
+        }
+    )).then(db.Customer.update(
+        {
+            name: req.body.name,
+            lastname: req.body.lastname,
+            password: req.body.password,
+            gender: req.body.gender,
+            balance: req.body.balance,
+            lastvisit: req.body.lastvisit,
+            photo: req.body.photo,
+            comment: req.body.comment
+        }, 
+        {
+            where: 
+            {
+                id: req.params.id
+            }
+        }
+    )).then(data => {
+            res.redirect("/admin/customers");
+        }
+    );
 });
 
 //delete staff in database
-router.delete("/customers/:id", (req, res) => {
+router.delete("/customers/:id", ensureAuthenticated, (req, res) => {
     db.Customer.destroy({
         where: {
             id: req.params.id
@@ -480,8 +567,9 @@ router.delete("/customers/:id", (req, res) => {
     });
 });
 
-router.get("/staffservice", (req, res) => {
+router.get("/staffservice", ensureAuthenticated, (req, res) => {
     var data;
+
     db.Staff.findAll().then(allStaff => {
         db.Service.findAll().then(allServices => {
             data = {
@@ -495,7 +583,7 @@ router.get("/staffservice", (req, res) => {
 });
 
 //// show all membership
-router.get("/membership", (req, res) => {
+router.get("/membership", ensureAuthenticated, (req, res) => {
     db.Membership.findAll({
         order: [["title", "ASC"]]
     }).then(data => {
@@ -504,7 +592,7 @@ router.get("/membership", (req, res) => {
 });
 
 //add membership in database
-router.post("/membership/new", (req, res) => {
+router.post("/membership/new", ensureAuthenticated, (req, res) => {
     db.Membership.create(
         {
             title: req.body.title,
@@ -517,7 +605,7 @@ router.post("/membership/new", (req, res) => {
 });
 
 //edit membership - show update membership
-router.get("/membership/:id/edit", (req, res) => {
+router.get("/membership/:id/edit", ensureAuthenticated, (req, res) => {
     db.Membership.findOne({
         where: {
             id: req.params.id
@@ -528,7 +616,7 @@ router.get("/membership/:id/edit", (req, res) => {
 });
 
 //update - update database
-router.put("/membership/:id", (req, res) => {
+router.put("/membership/:id", ensureAuthenticated, (req, res) => {
     db.Membership.update(req.body, {
         where: {
             id: req.params.id
@@ -539,7 +627,7 @@ router.put("/membership/:id", (req, res) => {
 });
 
 //delete membership in database
-router.delete("/membership/:id", (req, res) => {
+router.delete("/membership/:id", ensureAuthenticated, (req, res) => {
     db.Membership.destroy({
         where: {
             id: req.params.id

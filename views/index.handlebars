@@ -1,10 +1,10 @@
 <!-- Start of Page 1 (Home) -->
-<div data-full="true" id="HomeDiv" class="full-content page-content">
+<div data-full="true" id="Home" class="full-content page-content">
     <p id="service-text" data-name="Full Brazilian Blow-Outs!"></p>
 </div>
 <!-- End of Page 1 -->
 <!-- Start of Page 2 (About) -->
-<div data-full="true" id="AboutUsDiv" class="page-content">
+<div data-full="true" id="AboutUs" class="page-content">
     <div class="container">
         <div class="row">
             <img src="/assets/images/RoseGoldAboutUs.png" alt="aboutus">
@@ -47,7 +47,7 @@
 </div>
 <!-- End of Page 2 -->
 <!-- Start of Page 3 (Services) -->
-<div data-full="true" id="ServicesDiv" class="page-content">
+<div data-full="true" id="Services" class="page-content">
     <div class="container table-responsive">
         <div class="row">
             <img src="/assets/images/RoseGoldServices.png" alt="services">
@@ -71,7 +71,7 @@
 </div>
 <!-- End of Page 3 -->
 <!-- Start of Page 4 (Products) -->
-<div data-full="true" id="ProductsDiv" class="container page-content"><br />
+<div data-full="true" id="Products" class="container page-content"><br />
     <img src="/assets/images/RoseGoldProducts.png" alt="products">
     <div id="ProductBrandsDiv" class="row text-center">
         {{#each productBrands}}
@@ -90,7 +90,7 @@
 </div>
 <!-- End of Page 4 -->
 <!-- Start of Page 5 (Contact Us) -->
-<div data-full="true" id="ContactUsDiv" class="container page-content">
+<div data-full="true" id="ContactUs" class="container page-content">
     <img src="/assets/images/RoseGoldContactUs.png" alt="contact us">
     <div class="row">
         <div class="col-xs-12 col-sm-6 col-md-12 col-lg-12 salon-box">
@@ -106,7 +106,7 @@
     </div>
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 contact-box">
-            <form action="/leads" method="POST">
+            <form id="email_form" action="#" method="POST">
                 <div class="form-group">
                     <div class="row">
                         <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 firstNameCont">
@@ -149,7 +149,7 @@
 </div>
 <!-- End of Page 5 -->
 <!-- Start of Page 6 - Appointments -->
-<div data-full="true" id="AppointmentsDiv" class="container page-content">
+<div data-full="true" id="Appointments" class="container page-content">
     <div class="row">
         <img src="/assets/images/RoseGoldAppointments.png" alt="contact us">
         <!-- Start Square Appointments Embed Code -->
@@ -162,6 +162,33 @@
     $(document).ready(function () {
         // For page 1
         setInterval(changeService, 3000);
+
+        $("#email_form").submit(function(event) {
+    		event.preventDefault();
+
+            let sendData = {};
+
+            sendData.firstNameContact = $("#firstNameContact").val();
+            sendData.lastNameContact = $("#lastNameContact").val();
+            sendData.reasonContact = $("#reasonContact").val();
+            sendData.addlContact = $("#addlContact").val();
+            sendData.phoneContact = $("#phoneContact").val();
+            sendData.emailContact = $("#emailContact").val();
+
+            let request = $.ajax({
+                url: 'sendMail',
+                type: 'POST',
+                dataType: 'json',
+                data: sendData,
+                timeout: 2000
+            })
+            .done(function() {
+                console.log("Made it");
+            })
+            .always(function(data) {
+                swal("Message Sent", `Thank you, ${sendData.firstNameContact}!  Someone will be in touch with you shortly.`, "success");
+            });
+        });
 
         $("#admin-ul").hide();
         $("#public-ul").show();

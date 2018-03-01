@@ -1,0 +1,67 @@
+<!-- views/home.handlebars -->
+{{#if user}}
+    <br>
+    <div class="container">
+        <div class="jumbotron">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <a href="/admin/membership" class="noUnderline">
+                        <button type="button" class="btn btn-outline-danger btn-lg btn-block m-2">Membership</button>
+                    </a>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <a href="/admin/products">
+                        <button type="button" class="btn btn-outline-success btn-lg btn-block m-2">Products</button>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <a href="/admin/salon/edit">
+                        <button type="button" class="btn btn-outline-primary btn-lg btn-block m-2">Salon</button>
+                    </a>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <a href="/admin/services">
+                        <button type="button" class="btn btn-outline-warning btn-lg btn-block m-2">Services</button>
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <a href="/admin/staff">
+                        <button type="button" class="btn btn-outline-info btn-lg btn-block m-2">Staff</button>
+                    </a>
+                </div>
+                {{!--
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <a href="/admin/customers">
+                        <button type="button" class="btn btn-outline-danger btn-lg btn-block m-2">Customer</button>
+                    </a>
+                </div> --}} {{!--
+                <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+                    <a href="/admin/staffservice">
+                        <button type="button" class="btn btn-outline-secondary btn-lg btn-block m-2">Staff/Service</button>
+                    </a>
+                </div> --}}
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#admin-ul").show();
+            $("#public-ul").hide();
+        });
+    </script> 
+{{else}}
+    <div class="jumbotron">
+        <h1>MySql User Authentication</h1>
+        <p>Sign in to view the admin pages.</p>
+        <p>
+            <a href="/admin/signin" class="btn btn-primary btn-lg" role="button">
+                <span class="glyphicon glyphicon-user"></span>
+                Sign in!
+            </a>
+        </p>
+    </div>
+{{/if}}
