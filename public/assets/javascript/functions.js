@@ -42,6 +42,8 @@ exports.localReg = function (username, password) {
 //if user exists check if passwords match (use bcrypt.compareSync(password, hash); // true where 'hash' is password in DB)
 //if password matches take into website
 //if user doesn't exist or password doesn't match tell them it failed
+// Authentication code modified from:
+  //https://www.ctl.io/developers/blog/post/build-user-authentication-with-node-js-express-passport-and-mongodb
 exports.localAuth = function (username, password) {
     var deferred = Q.defer();
 
