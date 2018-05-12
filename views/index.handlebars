@@ -8,24 +8,38 @@
     <img src="/assets/images/RoseGoldAboutUs.png" alt="aboutus">
     <div class="container">
         <div class="row">
-            <p>Marianne Rimawi, formerly of Moi Salon, and Christopher Rey of Christopher Rey Salon, have joined forces to create a new, dynamic space together at Blvd 6 Salon!
-                We at Blvd 6 Salon want to make a positive and lasting impression while bringing you the highest quality in hair services, professional products, and individual attention.
-                By demonstrating healthy hair habits and setting achievable hair goals with the most professional hair care products, clients are well equipped to maintain long-lasting, lustrous locks at home.
-                In addition, we're very proud to be a Green Circle Salon, participating in the most environmentally friendly salon practices in the world.  After all, impressions matter and we at Blvd 6 Salon strive to leave a lasting footprint that's positively beautiful.</p>
+            <p>Marianne Rimawi, formerly of Moi Salon, and Christopher Rey of Christopher Rey Salon, have joined forces to create
+                a new, dynamic space together at Blvd 6 Salon! We at Blvd 6 Salon want to make a positive and lasting impression
+                while bringing you the highest quality in hair services, professional products, and individual attention.
+                By demonstrating healthy hair habits and setting achievable hair goals with the most professional hair care
+                products, clients are well equipped to maintain long-lasting, lustrous locks at home. In addition, we're
+                very proud to be a Green Circle Salon, participating in the most environmentally friendly salon practices
+                in the world. After all, impressions matter and we at Blvd 6 Salon strive to leave a lasting footprint that's
+                positively beautiful.</p>
             <!-- Example row of columns -->
         </div>
         <div class="row">
             <div class="col-md-6">
                 <h2>Marianne Rimawi</h2>
                 <img src="../assets/images/BLVD_6_MARIANNE-4.jpg" alt="Marianne Rimawi" class="profile-pic left">
-                <p>Marianne has been a hairstylist for over 20 years and a salon owner for the last decade.  Her latest creation, opening Blvd 6 Salon with Christopher Rey, is the most exciting addition on a spectacular career journey.  She has appeared on TV as a hair stylist, featured in magazines, and also taught her peers on stage and in salon.</p>
-                <p>Marianne is a loving mother to her 11 year old son and her two fur babies.  She loves to explore California and the surrounding countries.  If and when she has free time, you can find her working out, having a relaxing treatment at the spa, or reading a book.</p>
+                <p>Marianne has been a hairstylist for over 20 years and a salon owner for the last decade. Her latest creation,
+                    opening Blvd 6 Salon with Christopher Rey, is the most exciting addition on a spectacular career journey.
+                    She has appeared on TV as a hair stylist, featured in magazines, and also taught her peers on stage and
+                    in salon.</p>
+                <p>Marianne is a loving mother to her 11 year old son and her two fur babies. She loves to explore California
+                    and the surrounding countries. If and when she has free time, you can find her working out, having a
+                    relaxing treatment at the spa, or reading a book.</p>
             </div>
             <div class="col-md-6">
                 <h2>Christopher Rey</h2>
                 <img src="../assets/images/BLVD_6_REY.jpg" alt="Christopher Rey" class="profile-pic left">
-                <p>Christopher Rey has over 15 years experience in the hair industry.  He specializes in helping clients achieve their hair goals and teaches them how to maintain their hair at home.  Christopher Rey is certified in four different techniques and has 12 years of experience in utilizing extensions to cultivate versatile hairstyles for day-to-night looks.  As a trained colorist, he has advanced experience working with red, blonde, and brunette hues.</p>
-                <p>Living outside of the Valley, as a West Hollywood resident, Rey has a passion for personal fitness and good food.  He enjoys being a part of adrenaline pumping activities and participates in marathons and triathalons.</p>
+                <p>Christopher Rey has over 15 years experience in the hair industry. He specializes in helping clients achieve
+                    their hair goals and teaches them how to maintain their hair at home. Christopher Rey is certified in
+                    four different techniques and has 12 years of experience in utilizing extensions to cultivate versatile
+                    hairstyles for day-to-night looks. As a trained colorist, he has advanced experience working with red,
+                    blonde, and brunette hues.</p>
+                <p>Living outside of the Valley, as a West Hollywood resident, Rey has a passion for personal fitness and good
+                    food. He enjoys being a part of adrenaline pumping activities and participates in marathons and triathalons.</p>
             </div>
         </div>
         <!-- <h2 id="additional-staff" class="text-center">
@@ -71,13 +85,13 @@
 </div>
 End of Page 3 -->
 <!-- Start of Page 4 (Products) -->
-<div data-full="true" id="Products" class="container page-content"><br />
+<div data-full="true" id="Products" class="page-content">
     <img src="/assets/images/RoseGoldProducts.png" alt="products">
     <div id="ProductBrandsDiv" class="row text-center">
         {{#each productBrands}}
         <div class="col-lg-6 prod-row">
-            <img data-toggle="modal" data-target=".bd-example-modal-lg-{{id}}" aria-hidden="true" src="{{photo}}" alt="{{name}}"
-            data-value="{{name}}" class="brand-pic" onclick="sayHelloToMyLittleFriend('{{name}}');">
+            <img data-toggle="modal" data-target=".bd-example-modal-lg-{{id}}" aria-hidden="true" src="{{photo}}" alt="{{name}}" data-value="{{name}}"
+                class="brand-pic" onclick="sayHelloToMyLittleFriend('{{name}}');">
         </div>
         <div class="modal fade bd-example-modal-lg-{{id}}" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-lg">
@@ -90,63 +104,71 @@ End of Page 3 -->
 </div>
 <!-- End of Page 4 -->
 <!-- Start of Page 5 (Contact Us) -->
-<div data-full="true" id="ContactUs" class="container page-content">
-    <img src="/assets/images/RoseGoldContactUs.png" alt="contact us">
-    <div class="container table-responsive">
-        <div class="row">
-            <div class="col-xs-12 col-sm-6 col-md-12 col-lg-12 salon-box">
-                <h2>{{contactus.name}}</h2>
-                <span>{{contactus.Address.dataValues.address1}}</span><br />
-                <span>{{contactus.Address.dataValues.address2}}</span><br />
-                <span>{{contactus.Address.dataValues.city}}, </span>
-                <span>{{contactus.Address.dataValues.state}}</span>
-                <span>{{contactus.Address.dataValues.zip}}</span><br />
-                <span>Phone: {{contactus.Phone.dataValues.mobile}}</span><br />
-                <span>Email: <a href="mailto:{{contactus.Email.dataValues.email}}?subject=Inquiry from www.blvd6.com">{{contactus.Email.dataValues.email}}</a></span>
-            </div>  
-        </div>
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 contact-box">
-                <form id="email_form" action="#" method="POST">
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 firstNameCont">
-                                <label for="firstNameContact" class="label-short">First Name:</label>
-                                <input type="text" class="input-short" id="firstNameContact" name="firstNameContact">
-                            </div>
-                            <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 lastNameCont">
-                                <label for="lastNameContact" class="label-short">Last Name:</label>
-                                <input type="text" class="input-short" id="lastNameContact" name="lastNameContact">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="phoneContact" class="label-short">Phone:</label>
-                        <input type="tel" class="form-control" id="phoneContact" name="phoneContact">
-                    </div>
-                    <div class="form-group">
-                        <label for="emailContact" class="label-short">Email address:</label>
-                        <input type="email" class="form-control" id="emailContact" name="emailContact">
-                    </div>
-                    <div class="form-group">
-                        <label for="reasonContact" class="label-short">Choose one:</label>
-                        <select id="reasonContact" name="reasonContact" class="form-control">
-                            <option value="General Inquiry">Make me beautiful!</option>
-                            <option value="Special Occasion Consultation">Can I get a special occasion consultation?</option>
-                            <option value="Questions">I just have some questions.</option>  
-                        </select>
+<div data-full="true" id="ContactUs" class="page-content">
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 contact-form">
+            <!--Header PLUS Contact Form-->
+            <div class="row">
+                <img src="/assets/images/RoseGoldContactUs.png" alt="contact us">
+            </div>
+            <div class="row contact-box">
+                {{!--
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 contact-box"> --}}
+                    <form id="email_form" action="#" method="POST">
                         <div class="form-group">
-                            <textarea id="addlContact" name="addlContact" class="form-control" rows="8" placeholder="Tell us more..."></textarea>   
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 firstNameCont">
+                                    <label for="firstNameContact" class="label-short">First Name:</label>
+                                    <input type="text" class="input-short" id="firstNameContact" name="firstNameContact">
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 lastNameCont">
+                                    <label for="lastNameContact" class="label-short">Last Name:</label>
+                                    <br />
+                                    <input type="text" class="input-short" id="lastNameContact" name="lastNameContact">
+                                </div>
+                            </div>
                         </div>
-                        <button type="submit" id="submitContact" class="btn btn-default">Submit</button>
-                    </div>
-                </form> 
+                        <div class="form-group">
+                            <label for="phoneContact" class="label-short">Phone:</label>
+                            <input type="tel" class="form-control" id="phoneContact" name="phoneContact">
+                        </div>
+                        <div class="form-group">
+                            <label for="emailContact" class="label-short">Email address:</label>
+                            <input type="email" class="form-control" id="emailContact" name="emailContact">
+                        </div>
+                        <div class="form-group">
+                            <label for="reasonContact" class="label-short">Choose one:</label>
+                            <select id="reasonContact" name="reasonContact" class="form-control">
+                                <option value="General Inquiry">Make me beautiful!</option>
+                                <option value="Special Occasion Consultation">Can I get a special occasion consultation?</option>
+                                <option value="Questions">I just have some questions.</option>
+                            </select>
+                            <div class="form-group">
+                                <textarea id="addlContact" name="addlContact" class="form-control" rows="8" placeholder="Tell us more..."></textarea>
+                            </div>
+                            <button type="submit" id="submitContact" class="btn btn-default">Submit</button>
+                        </div>
+                    </form>
+                    {{!-- </div> --}}
             </div>
         </div>
-    </div>
-        <!--<div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 map-div"><div id="pano"></div></div>-->
-    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 map-div">
-        <div id="map"></div>
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 salon-box">
+            <!--Address PLUS Map-->
+            <div class="row" id="ContactUs">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    {{contactus.name}}
+                    <br /> {{contactus.Address.dataValues.address1}}
+                    <br /> {{contactus.Address.dataValues.address2}}
+                    <br /> {{contactus.Address.dataValues.city}}, {{contactus.Address.dataValues.state}} {{contactus.Address.dataValues.zip}}
+                    <br /> Phone: {{formatPhone contactus.Phone.dataValues.mobile}}
+                    <br />
+                    <span>Email:
+                        <a href="mailto:{{contactus.Email.dataValues.email}}?subject=Inquiry from www.blvd6.com">{{contactus.Email.dataValues.email}}</a>
+                    </span>
+                </div>
+            </div>
+            <div id="map" style="width: 50%; height: 72%;"></div>
+        </div>
     </div>
 </div>
 <!-- End of Page 5 -->
@@ -156,17 +178,19 @@ End of Page 3 -->
         <img src="/assets/images/RoseGoldAppointments.png" alt="contact us">
         Start Square Appointments Embed Code
         <script src='https://squareup.com/appointments/buyer/widget/1468bcf9-3336-493f-b871-912f79d48e19/FE3T7G4WT90MA.js'></script>
-        <!-- End Square Appointments EmbedCode -->
     </div>
-</div> 	
+</div> 	-->
 <!-- End of Page 6 - Appointments -->
 <script>
     $(document).ready(function () {
         // For page 1
         setInterval(changeService, 5000);
 
-        $("#email_form").submit(function(event) {
-    		event.preventDefault();
+        // Start code for formatting phone numbers
+
+
+        $("#email_form").submit(function (event) {
+            event.preventDefault();
 
             let sendData = {};
 
@@ -184,12 +208,12 @@ End of Page 3 -->
                 data: sendData,
                 timeout: 2000
             })
-            .done(function() {
-                console.log("Made it");
-            })
-            .always(function(data) {
-                swal("Message Sent", `Thank you, ${sendData.firstNameContact}!  Someone will be in touch with you shortly.`, "success");
-            });
+                .done(function () {
+                    console.log("Made it");
+                })
+                .always(function (data) {
+                    swal("Message Sent", `Thank you, ${sendData.firstNameContact}!  Someone will be in touch with you shortly.`, "success");
+                });
         });
 
         $("#admin-ul").hide();
@@ -199,34 +223,34 @@ End of Page 3 -->
             // Get the width and height of the window
             const winHeight = $(window).height();
             const winWidth = $(window).width();
-                
+
             // Change the divs to that width and height
-            $('[data-full="true"]').css({'width' : winWidth+'px', 'height' : winHeight+'px'});
-                
+            $('[data-full="true"]').css({ 'width': winWidth + 'px', 'height': winHeight + 'px' });
+
             // An exception for iPods and iPhones
-            if(navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPod/i)) {
-                $('[data-full="true"]').css({'width' : winWidth+'px', 'height' : winHeight+70+'px'});
-                $('#home').css({'width' : winWidth+'px', 'height' : winHeight+'px'});
+            if (navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPod/i)) {
+                $('[data-full="true"]').css({ 'width': winWidth + 'px', 'height': winHeight + 70 + 'px' });
+                $('#home').css({ 'width': winWidth + 'px', 'height': winHeight + 'px' });
             }
-                    
+
             // Check what page we're on in the document using the height and
             // scroll postion (That's $(window).scrollTop())
             const currentPage = $(window).scrollTop() + 60;
-                
-            if(currentPage < winHeight) {
+
+            if (currentPage < winHeight) {
                 // Add correct classes, repeat for different sizes
                 $('#menu a[href="#home"]').addClass('current');
                 $('#header').addClass('light');
-            } else if(currentPage > winHeight && currentPage < winHeight*2) {
+            } else if (currentPage > winHeight && currentPage < winHeight * 2) {
                 $('#menu a[href="#about"]').addClass('current');
                 $('#header').addClass('light');
-            } else if(currentPage > winHeight*2 && currentPage < winHeight*3) {
+            } else if (currentPage > winHeight * 2 && currentPage < winHeight * 3) {
                 $('#menu a[href="#services"]').addClass('current');
                 $('#header').addClass('dark');
-            } else if(currentPage > winHeight*3 && currentPage < winHeight*4) {
+            } else if (currentPage > winHeight * 3 && currentPage < winHeight * 4) {
                 $('#menu a[href="#contact"]').addClass('current');
                 $('#header').addClass('dark');
-            } else if(currentPage > winHeight*3 && currentPage < winHeight*4) {
+            } else if (currentPage > winHeight * 3 && currentPage < winHeight * 4) {
                 $('#menu a[href="#appointments"]').addClass('current');
                 $('#header').addClass('dark');
             }
@@ -237,9 +261,9 @@ End of Page 3 -->
     let svcImgs = [
         {
             index: 0,
-            title: 'Blow Dry!', 
+            title: 'Blow Dry!',
             url: 'url("../assets/images/blvd6pics/BLVD_6_SPACE-3.jpg")'
-        }, 
+        },
         {
             index: 1,
             title: 'Color!',
@@ -249,7 +273,7 @@ End of Page 3 -->
             index: 2,
             title: 'Men\'s Haircut!',
             url: 'url("../assets/images/blvd6pics/BLVD_6_SPACE-5.jpg")'
-        }, 
+        },
         {
             index: 3,
             title: 'Full Brazilian Blow-Outs!',
@@ -289,10 +313,10 @@ End of Page 3 -->
     function sayHelloToMyLittleFriend(prod) {
         let divs = "";
 
-        jQuery.get("/products/" + prod, function(data) {
+        jQuery.get("/products/" + prod, function (data) {
             let idx = "";
 
-            $.each(data.products, function(index, value) {
+            $.each(data.products, function (index, value) {
                 if (index % 2 !== 0) {
                     idx = "odds";
                 } else {
@@ -317,25 +341,15 @@ End of Page 3 -->
 
     // For page 5
     function initMap() {
-        var salon = {lat: 34.151417, lng: -118.453617};
-        var map = new google.maps.Map(document.getElementById('map'), {
+        let salon = { lat: 34.151417, lng: -118.453617 };
+        let map = new google.maps.Map(document.getElementById('map'), {
             center: salon,
             zoom: 15
         });
-        var marker = new google.maps.Marker({
+        let marker = new google.maps.Marker({
             position: salon,
             map: map
         });
-        /*var panorama = new google.maps.StreetViewPanorama(
-            document.getElementById('pano'), {
-            position: salon,
-            pov: {
-                heading: 15,
-                pitch: 10
-            }
-        });
-
-        map.setStreetView(panorama);*/
     }
 </script>
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAjc7C1wVVqG6qUwJTS3d55Nu4xxen1yJ4&callback=initMap"></script>
