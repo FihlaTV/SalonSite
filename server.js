@@ -118,7 +118,30 @@ app.use(function(req, res, next) {
 // Set Handlebars.
 var exphbs = require("express-handlebars");
 
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+let jsPhoneRE = /^(\d{3})(\d{3})(\d{4})$/;
+
+let stripStringNumbers = (input) => {
+    let numRE = /\D/g;
+
+    // Test to see if there are any non-numeric characters in the input
+    return numRE.test(input) ? input : input.replace(numRE, "");
+}
+
+app.engine("handlebars", exphbs({ 
+  defaultLayout: "main",
+  helpers: {
+    formatPhone: function (input) {
+      let theNumber = stripStringNumbers(input);
+
+      if (theNumber.length < 10) return "Invalid U.S. phone number";
+
+      let s2 = ("" + theNumber).replace(/\D/g, '');
+      let m = s2.match(jsPhoneRE);
+
+      return (!m) ? null : "(" + m[1] + ") " + m[2] + "-" + m[3];
+    }
+  }
+}));
 app.set("view engine", "handlebars");
 
 // Static directory

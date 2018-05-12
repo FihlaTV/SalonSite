@@ -85,8 +85,7 @@
 </div>
 End of Page 3 -->
 <!-- Start of Page 4 (Products) -->
-<div data-full="true" id="Products" class="container page-content">
-    <br />
+<div data-full="true" id="Products" class="page-content">
     <img src="/assets/images/RoseGoldProducts.png" alt="products">
     <div id="ProductBrandsDiv" class="row text-center">
         {{#each productBrands}}
@@ -105,218 +104,226 @@ End of Page 3 -->
 </div>
 <!-- End of Page 4 -->
 <!-- Start of Page 5 (Contact Us) -->
-<div data-full="true" id="ContactUs" class="container page-content">
-    <img src="/assets/images/RoseGoldContactUs.png" alt="contact us">
-        <div class="row">
-            <div class="col-xs-12 col-sm-6 col-md-12 col-lg-12 salon-box">
-                <h2>{{contactus.name}}</h2>
-                <span>{{contactus.Address.dataValues.address1}}</span>
-                <br />
-                <span>{{contactus.Address.dataValues.address2}}</span>
-                <br />
-                <span>{{contactus.Address.dataValues.city}}, </span>
-                <span>{{contactus.Address.dataValues.state}}</span>
-                <span>{{contactus.Address.dataValues.zip}}</span>
-                <br />
-                <span>Phone: {{contactus.Phone.dataValues.mobile}}</span>
-                <br />
-                <span>Email:
-                    <a href="mailto:{{contactus.Email.dataValues.email}}?subject=Inquiry from www.blvd6.com">{{contactus.Email.dataValues.email}}</a>
-                </span>
+<div data-full="true" id="ContactUs" class="page-content">
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 contact-form">
+            <!--Header PLUS Contact Form-->
+            <div class="row">
+                <img src="/assets/images/RoseGoldContactUs.png" alt="contact us">
+            </div>
+            <div class="row contact-box">
+                {{!--
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 contact-box"> --}}
+                    <form id="email_form" action="#" method="POST">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 firstNameCont">
+                                    <label for="firstNameContact" class="label-short">First Name:</label>
+                                    <input type="text" class="input-short" id="firstNameContact" name="firstNameContact">
+                                </div>
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 lastNameCont">
+                                    <label for="lastNameContact" class="label-short">Last Name:</label>
+                                    <br />
+                                    <input type="text" class="input-short" id="lastNameContact" name="lastNameContact">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="phoneContact" class="label-short">Phone:</label>
+                            <input type="tel" class="form-control" id="phoneContact" name="phoneContact">
+                        </div>
+                        <div class="form-group">
+                            <label for="emailContact" class="label-short">Email address:</label>
+                            <input type="email" class="form-control" id="emailContact" name="emailContact">
+                        </div>
+                        <div class="form-group">
+                            <label for="reasonContact" class="label-short">Choose one:</label>
+                            <select id="reasonContact" name="reasonContact" class="form-control">
+                                <option value="General Inquiry">Make me beautiful!</option>
+                                <option value="Special Occasion Consultation">Can I get a special occasion consultation?</option>
+                                <option value="Questions">I just have some questions.</option>
+                            </select>
+                            <div class="form-group">
+                                <textarea id="addlContact" name="addlContact" class="form-control" rows="8" placeholder="Tell us more..."></textarea>
+                            </div>
+                            <button type="submit" id="submitContact" class="btn btn-default">Submit</button>
+                        </div>
+                    </form>
+                    {{!-- </div> --}}
             </div>
         </div>
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 contact-box">
-                <form id="email_form" action="#" method="POST">
-                    <div class="form-group">
-                        <div class="row">
-                            <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 firstNameCont">
-                                <label for="firstNameContact" class="label-short">First Name:</label>
-                                <input type="text" class="input-short" id="firstNameContact" name="firstNameContact">
-                            </div>
-                            <div class="col-xs-6 col-sm-6 col-md-3 col-lg-3 lastNameCont">
-                                <label for="lastNameContact" class="label-short">Last Name:</label>
-                                <input type="text" class="input-short" id="lastNameContact" name="lastNameContact">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="phoneContact" class="label-short">Phone:</label>
-                        <input type="tel" class="form-control" id="phoneContact" name="phoneContact">
-                    </div>
-                    <div class="form-group">
-                        <label for="emailContact" class="label-short">Email address:</label>
-                        <input type="email" class="form-control" id="emailContact" name="emailContact">
-                    </div>
-                    <div class="form-group">
-                        <label for="reasonContact" class="label-short">Choose one:</label>
-                        <select id="reasonContact" name="reasonContact" class="form-control">
-                            <option value="General Inquiry">Make me beautiful!</option>
-                            <option value="Special Occasion Consultation">Can I get a special occasion consultation?</option>
-                            <option value="Questions">I just have some questions.</option>
-                        </select>
-                        <div class="form-group">
-                            <textarea id="addlContact" name="addlContact" class="form-control" rows="8" placeholder="Tell us more..."></textarea>
-                        </div>
-                        <button type="submit" id="submitContact" class="btn btn-default">Submit</button>
-                    </div>
-                </form>
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 salon-box">
+            <!--Address PLUS Map-->
+            <div class="row" id="ContactUs">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    {{contactus.name}}
+                    <br /> {{contactus.Address.dataValues.address1}}
+                    <br /> {{contactus.Address.dataValues.address2}}
+                    <br /> {{contactus.Address.dataValues.city}}, {{contactus.Address.dataValues.state}} {{contactus.Address.dataValues.zip}}
+                    <br /> Phone: {{formatPhone contactus.Phone.dataValues.mobile}}
+                    <br />
+                    <span>Email:
+                        <a href="mailto:{{contactus.Email.dataValues.email}}?subject=Inquiry from www.blvd6.com">{{contactus.Email.dataValues.email}}</a>
+                    </span>
+                </div>
             </div>
-            <div style="width:49%;">
-                <div id="map"></div>
-            </div>
+            <div id="map" style="width: 50%; height: 72%;"></div>
         </div>
     </div>
-    <!-- End of Page 5 -->
-    <!-- Start of Page 6 - Appointments -->
-    <!-- <div data-full="true" id="Appointments" class="container page-content">
+</div>
+<!-- End of Page 5 -->
+<!-- Start of Page 6 - Appointments -->
+<!-- <div data-full="true" id="Appointments" class="container page-content">
     <div class="row">
         <img src="/assets/images/RoseGoldAppointments.png" alt="contact us">
         Start Square Appointments Embed Code
         <script src='https://squareup.com/appointments/buyer/widget/1468bcf9-3336-493f-b871-912f79d48e19/FE3T7G4WT90MA.js'></script>
     </div>
 </div> 	-->
-    <!-- End of Page 6 - Appointments -->
-    <script>
-        $(document).ready(function () {
-            // For page 1
-            setInterval(changeService, 5000);
+<!-- End of Page 6 - Appointments -->
+<script>
+    $(document).ready(function () {
+        // For page 1
+        setInterval(changeService, 5000);
 
-            $("#email_form").submit(function (event) {
-                event.preventDefault();
+        // Start code for formatting phone numbers
 
-                let sendData = {};
 
-                sendData.firstNameContact = $("#firstNameContact").val();
-                sendData.lastNameContact = $("#lastNameContact").val();
-                sendData.reasonContact = $("#reasonContact").val();
-                sendData.addlContact = $("#addlContact").val();
-                sendData.phoneContact = $("#phoneContact").val();
-                sendData.emailContact = $("#emailContact").val();
+        $("#email_form").submit(function (event) {
+            event.preventDefault();
 
-                let request = $.ajax({
-                    url: 'sendMail',
-                    type: 'POST',
-                    dataType: 'json',
-                    data: sendData,
-                    timeout: 2000
+            let sendData = {};
+
+            sendData.firstNameContact = $("#firstNameContact").val();
+            sendData.lastNameContact = $("#lastNameContact").val();
+            sendData.reasonContact = $("#reasonContact").val();
+            sendData.addlContact = $("#addlContact").val();
+            sendData.phoneContact = $("#phoneContact").val();
+            sendData.emailContact = $("#emailContact").val();
+
+            let request = $.ajax({
+                url: 'sendMail',
+                type: 'POST',
+                dataType: 'json',
+                data: sendData,
+                timeout: 2000
+            })
+                .done(function () {
+                    console.log("Made it");
                 })
-                    .done(function () {
-                        console.log("Made it");
-                    })
-                    .always(function (data) {
-                        swal("Message Sent", `Thank you, ${sendData.firstNameContact}!  Someone will be in touch with you shortly.`, "success");
-                    });
-            });
-
-            $("#admin-ul").hide();
-            $("#public-ul").show();
-
-            function getSize() {
-                // Get the width and height of the window
-                const winHeight = $(window).height();
-                const winWidth = $(window).width();
-
-                // Change the divs to that width and height
-                $('[data-full="true"]').css({ 'width': winWidth + 'px', 'height': winHeight + 'px' });
-
-                // An exception for iPods and iPhones
-                if (navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPod/i)) {
-                    $('[data-full="true"]').css({ 'width': winWidth + 'px', 'height': winHeight + 70 + 'px' });
-                    $('#home').css({ 'width': winWidth + 'px', 'height': winHeight + 'px' });
-                }
-
-                // Check what page we're on in the document using the height and
-                // scroll postion (That's $(window).scrollTop())
-                const currentPage = $(window).scrollTop() + 60;
-
-                if (currentPage < winHeight) {
-                    // Add correct classes, repeat for different sizes
-                    $('#menu a[href="#home"]').addClass('current');
-                    $('#header').addClass('light');
-                } else if (currentPage > winHeight && currentPage < winHeight * 2) {
-                    $('#menu a[href="#about"]').addClass('current');
-                    $('#header').addClass('light');
-                } else if (currentPage > winHeight * 2 && currentPage < winHeight * 3) {
-                    $('#menu a[href="#services"]').addClass('current');
-                    $('#header').addClass('dark');
-                } else if (currentPage > winHeight * 3 && currentPage < winHeight * 4) {
-                    $('#menu a[href="#contact"]').addClass('current');
-                    $('#header').addClass('dark');
-                } else if (currentPage > winHeight * 3 && currentPage < winHeight * 4) {
-                    $('#menu a[href="#appointments"]').addClass('current');
-                    $('#header').addClass('dark');
-                }
-            }
+                .always(function (data) {
+                    swal("Message Sent", `Thank you, ${sendData.firstNameContact}!  Someone will be in touch with you shortly.`, "success");
+                });
         });
 
-        // For page 1
-        let svcImgs = [
-            {
-                index: 0,
-                title: 'Blow Dry!',
-                url: 'url("../assets/images/blvd6pics/BLVD_6_SPACE-3.jpg")'
-            },
-            {
-                index: 1,
-                title: 'Color!',
-                url: 'url("../assets/images/blvd6pics/BLVD_6_SPACE-4.jpg")',
-            },
-            {
-                index: 2,
-                title: 'Men\'s Haircut!',
-                url: 'url("../assets/images/blvd6pics/BLVD_6_SPACE-5.jpg")'
-            },
-            {
-                index: 3,
-                title: 'Full Brazilian Blow-Outs!',
-                url: 'url("../assets/images/blvd6pics/BLVD_6_SPACE-9.jpg")'
-            },
-            {
-                index: 4,
-                title: 'Special Occassion Up-Do!',
-                url: 'url("../assets/images/blvd6pics/BLVD_6_SPACE-1.jpg")'
-            }
-        ];
-
-        function changeService() {
-            let curImg = $("#service-text").attr("data-name");
-            let curImgIdx = svcImgs.map(function (e) {
-                return e.title;
-            }).indexOf(curImg);
-
-            if (curImgIdx >= 0 && curImgIdx < svcImgs.length - 1) {
-                let newIdx = curImgIdx + 1;
-
-                $(".full-content").css("background", `no-repeat center/100% ${svcImgs[newIdx].url}`);
-                $("#service-text").attr("data-name", svcImgs[newIdx].title);
-            } else {
-                $(".full-content").css("background", `no-repeat center/100% ${svcImgs[0].url}`);
-                $("#service-text").attr("data-name", svcImgs[0].title);
-
-                curImgIdx = 0;
-            }
-        }
-
-        // For page 2
         $("#admin-ul").hide();
         $("#public-ul").show();
 
-        // For page 4
-        function sayHelloToMyLittleFriend(prod) {
-            let divs = "";
+        function getSize() {
+            // Get the width and height of the window
+            const winHeight = $(window).height();
+            const winWidth = $(window).width();
 
-            jQuery.get("/products/" + prod, function (data) {
-                let idx = "";
+            // Change the divs to that width and height
+            $('[data-full="true"]').css({ 'width': winWidth + 'px', 'height': winHeight + 'px' });
 
-                $.each(data.products, function (index, value) {
-                    if (index % 2 !== 0) {
-                        idx = "odds";
-                    } else {
-                        idx = "evens";
-                    }
+            // An exception for iPods and iPhones
+            if (navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPod/i)) {
+                $('[data-full="true"]').css({ 'width': winWidth + 'px', 'height': winHeight + 70 + 'px' });
+                $('#home').css({ 'width': winWidth + 'px', 'height': winHeight + 'px' });
+            }
 
-                    divs += `<div class="row prod-row ${idx}">
+            // Check what page we're on in the document using the height and
+            // scroll postion (That's $(window).scrollTop())
+            const currentPage = $(window).scrollTop() + 60;
+
+            if (currentPage < winHeight) {
+                // Add correct classes, repeat for different sizes
+                $('#menu a[href="#home"]').addClass('current');
+                $('#header').addClass('light');
+            } else if (currentPage > winHeight && currentPage < winHeight * 2) {
+                $('#menu a[href="#about"]').addClass('current');
+                $('#header').addClass('light');
+            } else if (currentPage > winHeight * 2 && currentPage < winHeight * 3) {
+                $('#menu a[href="#services"]').addClass('current');
+                $('#header').addClass('dark');
+            } else if (currentPage > winHeight * 3 && currentPage < winHeight * 4) {
+                $('#menu a[href="#contact"]').addClass('current');
+                $('#header').addClass('dark');
+            } else if (currentPage > winHeight * 3 && currentPage < winHeight * 4) {
+                $('#menu a[href="#appointments"]').addClass('current');
+                $('#header').addClass('dark');
+            }
+        }
+    });
+
+    // For page 1
+    let svcImgs = [
+        {
+            index: 0,
+            title: 'Blow Dry!',
+            url: 'url("../assets/images/blvd6pics/BLVD_6_SPACE-3.jpg")'
+        },
+        {
+            index: 1,
+            title: 'Color!',
+            url: 'url("../assets/images/blvd6pics/BLVD_6_SPACE-4.jpg")',
+        },
+        {
+            index: 2,
+            title: 'Men\'s Haircut!',
+            url: 'url("../assets/images/blvd6pics/BLVD_6_SPACE-5.jpg")'
+        },
+        {
+            index: 3,
+            title: 'Full Brazilian Blow-Outs!',
+            url: 'url("../assets/images/blvd6pics/BLVD_6_SPACE-9.jpg")'
+        },
+        {
+            index: 4,
+            title: 'Special Occassion Up-Do!',
+            url: 'url("../assets/images/blvd6pics/BLVD_6_SPACE-1.jpg")'
+        }
+    ];
+
+    function changeService() {
+        let curImg = $("#service-text").attr("data-name");
+        let curImgIdx = svcImgs.map(function (e) {
+            return e.title;
+        }).indexOf(curImg);
+
+        if (curImgIdx >= 0 && curImgIdx < svcImgs.length - 1) {
+            let newIdx = curImgIdx + 1;
+
+            $(".full-content").css("background", `no-repeat center/100% ${svcImgs[newIdx].url}`);
+            $("#service-text").attr("data-name", svcImgs[newIdx].title);
+        } else {
+            $(".full-content").css("background", `no-repeat center/100% ${svcImgs[0].url}`);
+            $("#service-text").attr("data-name", svcImgs[0].title);
+
+            curImgIdx = 0;
+        }
+    }
+
+    // For page 2
+    $("#admin-ul").hide();
+    $("#public-ul").show();
+
+    // For page 4
+    function sayHelloToMyLittleFriend(prod) {
+        let divs = "";
+
+        jQuery.get("/products/" + prod, function (data) {
+            let idx = "";
+
+            $.each(data.products, function (index, value) {
+                if (index % 2 !== 0) {
+                    idx = "odds";
+                } else {
+                    idx = "evens";
+                }
+
+                divs += `<div class="row prod-row ${idx}">
                     <div class="col-lg-6">
                     <img src="${data.products[index].photo}" alt="${data.products[index].name}" class="product-pic">
                     </div>
@@ -326,23 +333,23 @@ End of Page 3 -->
                     <strong>Description: </strong>${data.products[index].description}
                     </div>
                     </div>`;
-                });
+            });
 
-                $(".modal-content").html(divs);
-            });
-        }
+            $(".modal-content").html(divs);
+        });
+    }
 
-        // For page 5
-        function initMap() {
-            let salon = { lat: 34.151417, lng: -118.453617 };
-            let map = new google.maps.Map(document.getElementById('map'), {
-                center: salon,
-                zoom: 15
-            });
-            let marker = new google.maps.Marker({
-                position: salon,
-                map: map
-            });
-        }
-    </script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAjc7C1wVVqG6qUwJTS3d55Nu4xxen1yJ4&callback=initMap"></script>
+    // For page 5
+    function initMap() {
+        let salon = { lat: 34.151417, lng: -118.453617 };
+        let map = new google.maps.Map(document.getElementById('map'), {
+            center: salon,
+            zoom: 15
+        });
+        let marker = new google.maps.Marker({
+            position: salon,
+            map: map
+        });
+    }
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAjc7C1wVVqG6qUwJTS3d55Nu4xxen1yJ4&callback=initMap"></script>
