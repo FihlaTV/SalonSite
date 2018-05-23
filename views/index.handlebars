@@ -105,69 +105,70 @@ End of Page 3 -->
 <!-- End of Page 4 -->
 <!-- Start of Page 5 (Contact Us) -->
 <div data-full="true" id="ContactUs" class="page-content">
-    <div class="row">
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 contact-form">
-            <!--Header PLUS Contact Form-->
-            <div class="row">
-                <img src="/assets/images/RoseGoldContactUs.png" alt="contact us">
-            </div>
-            <div class="row contact-box">
-                {{!--
-                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 contact-box"> --}}
-                    <form id="email_form" action="#" method="POST">
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 firstNameCont">
-                                    <label for="firstNameContact" class="label-short">First Name:</label>
-                                    <input type="text" class="input-short" id="firstNameContact" name="firstNameContact">
-                                </div>
-                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 lastNameCont">
-                                    <label for="lastNameContact" class="label-short">Last Name:</label>
-                                    <br />
-                                    <input type="text" class="input-short" id="lastNameContact" name="lastNameContact">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="phoneContact" class="label-short">Phone:</label>
-                            <input type="tel" class="form-control" id="phoneContact" name="phoneContact">
-                        </div>
-                        <div class="form-group">
-                            <label for="emailContact" class="label-short">Email address:</label>
-                            <input type="email" class="form-control" id="emailContact" name="emailContact">
-                        </div>
-                        <div class="form-group">
-                            <label for="reasonContact" class="label-short">Choose one:</label>
-                            <select id="reasonContact" name="reasonContact" class="form-control">
-                                <option value="General Inquiry">Make me beautiful!</option>
-                                <option value="Special Occasion Consultation">Can I get a special occasion consultation?</option>
-                                <option value="Questions">I just have some questions.</option>
-                            </select>
+    <img src="/assets/images/RoseGoldContactUs.png" alt="contact us">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 contact-form">
+                <!--Header PLUS Contact Form-->
+                <div class="row contact-box">
+                    {{!--
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 contact-box"> --}}
+                        <form id="email_form" action="#" method="POST">
                             <div class="form-group">
-                                <textarea id="addlContact" name="addlContact" class="form-control" rows="8" placeholder="Tell us more..."></textarea>
+                                <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 firstNameCont">
+                                        <label for="firstNameContact" class="label-short">First Name:</label>
+                                        <input type="text" class="input-short" id="firstNameContact" name="firstNameContact">
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 lastNameCont">
+                                        <label for="lastNameContact" class="label-short">Last Name:</label>
+                                        <br />
+                                        <input type="text" class="input-short" id="lastNameContact" name="lastNameContact">
+                                    </div>
+                                </div>
                             </div>
-                            <button type="submit" id="submitContact" class="btn btn-default">Submit</button>
-                        </div>
-                    </form>
-                    {{!-- </div> --}}
-            </div>
-        </div>
-        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 salon-box">
-            <!--Address PLUS Map-->
-            <div class="row" id="ContactUs">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    {{contactus.name}}
-                    <br /> {{contactus.Address.dataValues.address1}}
-                    <br /> {{contactus.Address.dataValues.address2}}
-                    <br /> {{contactus.Address.dataValues.city}}, {{contactus.Address.dataValues.state}} {{contactus.Address.dataValues.zip}}
-                    <br /> Phone: {{formatPhone contactus.Phone.dataValues.mobile}}
-                    <br />
-                    <span>Email:
-                        <a href="mailto:{{contactus.Email.dataValues.email}}?subject=Inquiry from www.blvd6.com">{{contactus.Email.dataValues.email}}</a>
-                    </span>
+                            <div class="form-group">
+                                <label for="phoneContact" class="label-short">Phone:</label>
+                                <input type="tel" class="form-control" id="phoneContact" name="phoneContact">
+                            </div>
+                            <div class="form-group">
+                                <label for="emailContact" class="label-short">Email address:</label>
+                                <input type="email" class="form-control" id="emailContact" name="emailContact">
+                            </div>
+                            <div class="form-group">
+                                <label for="reasonContact" class="label-short">Choose one:</label>
+                                <select id="reasonContact" name="reasonContact" class="form-control">
+                                    <option value="General Inquiry">Make me beautiful!</option>
+                                    <option value="Special Occasion Consultation">Can I get a special occasion consultation?</option>
+                                    <option value="Questions">I just have some questions.</option>
+                                </select>
+                                <div class="form-group">
+                                    <textarea id="addlContact" name="addlContact" class="form-control" rows="8" placeholder="Tell us more..."></textarea>
+                                </div>
+                                <button type="submit" id="submitContact" class="btn btn-default">Submit</button>
+                            </div>
+                        </form>
+                        {{!-- </div> --}}
                 </div>
             </div>
-            <div id="map" style="width: 50%; height: 72%;"></div>
+            <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 salon-box">
+                <!--Address PLUS Map-->
+                <div class="row" id="ContactUs">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        {{contactus.name}}
+                        <br /> {{contactus.Address.dataValues.address1}}
+                        <br /> {{contactus.Address.dataValues.address2}}
+                        <br /> {{contactus.Address.dataValues.city}}, {{contactus.Address.dataValues.state}} {{contactus.Address.dataValues.zip}}
+                        <!--removed formatPhone from inside handlebars -->
+                        <br /> Phone: {{contactus.Phone.dataValues.mobile}}
+                        <br />
+                        <span>Email:
+                            <a href="mailto:{{contactus.Email.dataValues.email}}?subject=Inquiry from www.blvd6.com">{{contactus.Email.dataValues.email}}</a>
+                        </span>
+                    </div>
+                </div>
+                <div id="map" style="width: 50%; height: 72%;"></div>
+            </div>
         </div>
     </div>
 </div>

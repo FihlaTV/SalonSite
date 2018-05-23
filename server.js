@@ -129,7 +129,7 @@ let stripStringNumbers = (input) => {
 
 app.engine("handlebars", exphbs({ 
   defaultLayout: "main",
-  helpers: {
+  /*helpers: {
     formatPhone: function (input) {
       let theNumber = stripStringNumbers(input);
 
@@ -140,7 +140,7 @@ app.engine("handlebars", exphbs({
 
       return (!m) ? null : "(" + m[1] + ") " + m[2] + "-" + m[3];
     }
-  }
+  }*/
 }));
 app.set("view engine", "handlebars");
 

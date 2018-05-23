@@ -126,7 +126,8 @@ body, html {
 }
 
 .contact-form {
-    padding-left: 50px;
+    /*padding-left: 50px;*/
+    padding-bottom: 15px;
 }
 
 footer {
@@ -164,7 +165,7 @@ footer {
 
 .salon-box {
     font-weight: bold;
-    padding-bottom: 15px;
+    padding-bottom: 50px;
 }
 
 #map, #pano {
